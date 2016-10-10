@@ -11,7 +11,9 @@ Hw.Srvc.Game = Hw.Srvc.Game || (function(){
 
     var init = function ()
     {
-
+        
+        var tmp = $('#monster-template').html();
+        
         /**
          * Subscribe demo
          */

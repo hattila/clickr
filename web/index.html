@@ -16,6 +16,9 @@
 <div id="page-container">
 	<div class="left-pane float-left">
 
+		<div id="game-field">
+
+		</div>
 
 
 	</div>
@@ -33,11 +36,21 @@
 
 </div>
 
+<script id="monster-template" type="text/template">
+	<div class="monster">
+		<div class="health-bar"></div>
+		<div class="image"></div>
+		<div class="hit-box"></div>
+	</div>
+</script>
+
 	<script src="/js/jquery-2.2.2.min.js" type="text/javascript"></script>
 	<script src="/js/libs/materialize.min.js" type="text/javascript"></script>
 	<script src="/js/utils.js" type="text/javascript"></script>
 	<script src="/js/namespace.js" type="text/javascript"></script>
 	<script src="/js/Controller/AppController.js" type="text/javascript"></script>
+	<script src="/js/Entity/Monster.js" type="text/javascript"></script>
 	<script src="/js/Service/Game.js" type="text/javascript"></script>
+	<script src="/js/Service/Spawner.js" type="text/javascript"></script>
 </body>
 </html>
