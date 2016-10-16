@@ -76,7 +76,21 @@ Hw.Enty.Monster = Hw.Enty.Monster || (function(template, name, image, hp){
 
     var _updateHealth = function () {
         $(_template).data('health', _hp);
-        $(_template).children('.health-bar-container').children('.health-bar').css({width: (_hp / _maxHp * 100) + '%'});
+
+        var barWidth = _hp / _maxHp * 100;
+        var bgColor = '#00bb00';
+        if (barWidth <= 75 && barWidth > 50) {
+            bgColor = '#bbbb00';
+        } else if (barWidth <= 50 && barWidth > 25) {
+            bgColor = '#ff5500';
+        } else if (barWidth <= 25) {
+            bgColor = '#bb0000';
+        }
+
+        $(_template).children('.health-bar-container').children('.health-bar').css({
+            width: (_hp / _maxHp * 100) + '%',
+            backgroundColor: bgColor
+        });
         $(_template).children('.health-bar-container').children('.health').text(_hp + ' / ' + _maxHp);
     };
         
