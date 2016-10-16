@@ -8,8 +8,9 @@
 	<link href="/css/reset.css" rel="stylesheet" type="text/css" media="screen,projection">
 	<link href="/css/helpers.css" rel="stylesheet" type="text/css" media="screen,projection">
 	<link href="/css/global.css" rel="stylesheet" type="text/css" media="screen,projection">
+	<link href="/css/monster.css" rel="stylesheet" type="text/css" media="screen,projection">
 
-	<title>Slide Puzzle</title>
+	<title>ClickR</title>
 </head>
 <body>
 
@@ -38,7 +39,9 @@
 
 <script id="monster-template" type="text/template">
 	<div class="monster" data-maxhp="{maxHp}" data-hp="{hp}">
-		<div class="health-bar"></div>
+		<div class="health-bar">
+			<div class="health"></div>
+		</div>
 		<div class="name">{name}</div>
 		<div class="image"></div>
 		<div class="hit-box"></div>

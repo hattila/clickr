@@ -1,0 +1,38 @@
+.monster {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	width: 100px;
+	height: 120px;
+}
+.monster .health-bar {
+	position: relative;
+	border: 1px solid #444;
+	width: 100%;
+	height: 10px;
+}
+.monster .health-bar .health{
+	width: 100%;
+	height: 100%;
+	background-color: #00bb00;
+}
+.monster .name {
+	color: #ededed;
+	font-size: 12px;
+	font-weight: bold;
+	margin: 0;
+	text-align: center;
+	position: absolute;
+	bottom: 4px;
+	left: 0;
+	width: 100%;
+}
+.monster .image {}
+.monster .hit-box {
+	position: absolute;
+	border: 2px dashed #444444;
+	width: 100%;
+	height: calc(100% - 20px);
+	top: 20px;
+	left: 0px;
+}

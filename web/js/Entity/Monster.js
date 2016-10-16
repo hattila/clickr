@@ -13,7 +13,6 @@ Hw.Enty.Monster = Hw.Enty.Monster || (function(name, hp){
         
     // var init = function (hp, name)
     // {
-    //     // TODO: validation
     //     _hp = _maxHp = hp;
     //     _name = name;
     // };

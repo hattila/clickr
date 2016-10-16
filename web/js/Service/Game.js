@@ -17,7 +17,7 @@ Hw.Srvc.Game = Hw.Srvc.Game || (function(){
         // var mob = Hw.Srvc.Spawner.spawnRandom();
         // $('#game-field').append(_getMonsterTmp(mob));
 
-        _spawnMonstersToTheField(3, 1000);
+        _spawnMonstersToTheField(1, 1000);
 
         /**
          * Subscribe demo
@@ -42,12 +42,12 @@ Hw.Srvc.Game = Hw.Srvc.Game || (function(){
             var intervalVar = setInterval(function(){
                 if (idx == numberOfMonsters) {
                     clearTimeout(intervalVar);
+                    _monsterSpawningActive = false;
+                } else {
+                    var mob = Hw.Srvc.Spawner.spawnRandom();
+                    $('#game-field').append(_getMonsterTmp(mob));
+                    idx++;
                 }
-                var mob = Hw.Srvc.Spawner.spawnRandom();
-
-                $('#game-field').append(_getMonsterTmp(mob));
-
-                idx++;
             }, interval);
         }
 
@@ -55,13 +55,19 @@ Hw.Srvc.Game = Hw.Srvc.Game || (function(){
 
     var _getMonsterTmp = function (monster) {
         var newTmp = _monsterTmp;
-
-        console.log(newTmp);
+        
         console.log(monster.getName());
 
-        newTmp = newTmp.replace('{maxHp}', monster.getMaxHp());
-        newTmp = newTmp.replace('{hp}', monster.getHp());
-        newTmp = newTmp.replace('{name}', monster.getName());
+        // newTmp = newTmp.replace('{maxHp}', monster.getMaxHp());
+        // newTmp = newTmp.replace('{hp}', monster.getHp());
+        // newTmp = newTmp.replace('{name}', monster.getName());
+
+        newTmp = newTmp
+            .replace('{maxHp}', monster.getMaxHp())
+            .replace('{hp}', monster.getHp())
+            .replace('{name}', monster.getName());
+
+
         return newTmp;
     };
 
