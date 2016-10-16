@@ -22,15 +22,55 @@ Hw.Srvc.Spawner = Hw.Srvc.Spawner || (function(){
         'image/drawn_skeleton_warrior.jpg'
     ];
 
-    var spawnRandom = function () {
-        var name = _monsterNames[Math.floor(Math.random() * (_monsterNames.length - 1))];
-        var hp = Math.floor(Math.random() * 6 + 5); // 5..10
-        var image = _monsterImages[Math.floor(Math.random() * (_monsterImages.length - 1))];
+    var _monsterTmp = $('#monster-template').html();
+
+    var _monsterSpawningActive = false;
+
+    /**
+     *
+     * @param field
+     * @param numberOfMonsters
+     * @param interval [5000]
+     */
+    var spawnMonstersToAField = function (field, numberOfMonsters, interval) {
+        interval = interval !== undefined ? interval : 5000;
+
+        if (!_monsterSpawningActive) {
+            _monsterSpawningActive = true;
+            var idx = 0;
+
+            var intervalVar = setInterval(function(){
+                if (idx == numberOfMonsters) {
+                    clearTimeout(intervalVar);
+                    _monsterSpawningActive = false;
+                } else {
+
+                    try {
+                        var mob = _spawnRandom();
+                        $(field).append(mob.getMonsterHtml());
+                        idx++;
+                    } catch(err) {
+                        clearTimeout(intervalVar);
+                        _monsterSpawningActive = false;
+
+                        console.log(err.message);
+                    }
+
+                }
+            }, interval);
+        }
+
+    };
         
-        return new Hw.Enty.Monster(name, hp, image);
+    var _spawnRandom = function () {
+        var name = _monsterNames[Math.floor(Math.random() * (_monsterNames.length))];
+        var hp = Math.floor(Math.random() * 6 + 5); // 5..10
+        var image = _monsterImages[Math.floor(Math.random() * (_monsterImages.length))];
+        
+        return new Hw.Enty.Monster(_monsterTmp, name, image, hp);
     };
 
     return {
-        spawnRandom: spawnRandom
+        spawnMonstersToAField: spawnMonstersToAField
     }
 })();
