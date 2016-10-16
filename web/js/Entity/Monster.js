@@ -40,34 +40,44 @@ Hw.Enty.Monster = Hw.Enty.Monster || (function(template, name, image, hp){
         
     var recDamage = function (damage) {
         _hp = damage < _hp ? _hp - damage : 0;
+        _updateHealth();
         return _hp;
     };
     var recHealing = function (heal) {
         _hp = heal < _maxHp - _hp ? _hp + heal : _maxHp;
+        _updateHealth();
         return _hp;
     };
 
     var getMonsterHtml = function () {
-        var newTmp = _template;
-
         console.log(getName());
 
-        newTmp = newTmp
-            .replace('{maxHp}', getMaxHp())
-            .replace('{hp}', getHp())
+        _template = _template
+            .replace(/{maxHp}/g, getMaxHp())
+            .replace(/{hp}/g, getHp())
             .replace('{name}', getName());
 
 
-        newTmp = $.parseHTML(newTmp);
+        _template = $.parseHTML(_template);
         // $(newTmp).children('.image').css({'background-image': getImage()});
 
         var style = 'top: ' + _top + 'px; left: ' + _left + 'px;';
         var imageStyle = 'background-image: url(\'' + getImage() + '\');';
 
-        $(newTmp).attr('style', style);
-        $(newTmp).children('.image').attr('style', imageStyle);
+        $(_template).attr('style', style);
+        $(_template).children('.image').attr('style', imageStyle);
 
-        return newTmp;
+        $(_template).children('.hit-box').click(function(){
+            recDamage(Player.getDamage());
+        });
+        
+        return _template;
+    };
+
+    var _updateHealth = function () {
+        $(_template).data('health', _hp);
+        $(_template).children('.health-bar-container').children('.health-bar').css({width: (_hp / _maxHp * 100) + '%'});
+        $(_template).children('.health-bar-container').children('.health').text(_hp + ' / ' + _maxHp);
     };
         
     return {

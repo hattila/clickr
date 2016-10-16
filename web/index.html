@@ -39,8 +39,9 @@
 
 <script id="monster-template" type="text/template">
 	<div class="monster" data-maxhp="{maxHp}" data-hp="{hp}">
-		<div class="health-bar">
-			<div class="health"></div>
+		<div class="health-bar-container">
+			<div class="health-bar"></div>
+			<div class="health">{hp} / {maxHp}</div>
 		</div>
 		<div class="image"></div>
 		<div class="name">{name}</div>
@@ -52,8 +53,9 @@
 	<script src="/js/libs/materialize.min.js" type="text/javascript"></script>
 	<script src="/js/utils.js" type="text/javascript"></script>
 	<script src="/js/namespace.js" type="text/javascript"></script>
-	<script src="/js/Controller/AppController.js" type="text/javascript"></script>
+	<script src="/js/Entity/Player.js" type="text/javascript"></script>
 	<script src="/js/Entity/Monster.js" type="text/javascript"></script>
+	<script src="/js/Controller/AppController.js" type="text/javascript"></script>
 	<script src="/js/Service/Game.js" type="text/javascript"></script>
 	<script src="/js/Service/Spawner.js" type="text/javascript"></script>
 </body>

@@ -46,8 +46,8 @@ Hw.Srvc.Spawner = Hw.Srvc.Spawner || (function(){
                 } else {
 
                     try {
-                        var mob = _spawnRandom();
-                        $(field).append(mob.getMonsterHtml());
+                        var monster = _spawnRandomMonster();
+                        $(field).append(monster.getMonsterHtml());
                         idx++;
                     } catch(err) {
                         clearTimeout(intervalVar);
@@ -62,7 +62,7 @@ Hw.Srvc.Spawner = Hw.Srvc.Spawner || (function(){
 
     };
         
-    var _spawnRandom = function () {
+    var _spawnRandomMonster = function () {
         var name = _monsterNames[Math.floor(Math.random() * (_monsterNames.length))];
         var hp = Math.floor(Math.random() * 6 + 5); // 5..10
         var image = _monsterImages[Math.floor(Math.random() * (_monsterImages.length))];

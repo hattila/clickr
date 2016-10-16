@@ -8,21 +8,33 @@
 	opacity: 1;
 	transition: opacity 0.2s;
 }
-.monster .health-bar {
+.monster .health-bar-container {
 	position: relative;
 	border: 1px solid #444;
 	width: 100%;
-	height: 10px;
+	height: 15px;
 }
-.monster .health-bar .health{
+.monster .health-bar-container .health-bar {
 	width: 100%;
 	height: 100%;
 	background-color: #00bb00;
+	transition: width 0.2s;
+}
+.monster .health-bar-container .health {
+	width: 100%;
+	text-align: center;
+	font-size: 10px;
+	font-weight: bold;
+	text-shadow: 1px 1px 0px #000;
+	color: #fff;
+	position: absolute;
+	top: 2px;
 }
 .monster .name {
 	color: #ededed;
 	font-size: 12px;
 	font-weight: bold;
+	font-shadow: 1px 1px 0px #000;
 	margin: 0;
 	text-align: center;
 	position: absolute;
