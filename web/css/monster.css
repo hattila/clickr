@@ -27,7 +27,15 @@
 	left: 0;
 	width: 100%;
 }
-.monster .image {}
+.monster .image {
+	position: absolute;
+	width: 100%;
+	height: calc(100% - 20px);
+	top: 20px;
+	left: 0px;
+	background-position: center center;
+	background-size: 100% auto;
+}
 .monster .hit-box {
 	position: absolute;
 	border: 2px dashed #444444;

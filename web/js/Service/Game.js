@@ -44,9 +44,18 @@ Hw.Srvc.Game = Hw.Srvc.Game || (function(){
                     clearTimeout(intervalVar);
                     _monsterSpawningActive = false;
                 } else {
-                    var mob = Hw.Srvc.Spawner.spawnRandom();
-                    $('#game-field').append(_getMonsterTmp(mob));
-                    idx++;
+
+                    try {
+                        var mob = Hw.Srvc.Spawner.spawnRandom();
+                        $('#game-field').append(_getMonsterTmp(mob));
+                        idx++;
+                    } catch(err) {
+                        clearTimeout(intervalVar);
+                        _monsterSpawningActive = false;
+
+                        console.log(err.message);
+                    }
+
                 }
             }, interval);
         }
@@ -57,16 +66,16 @@ Hw.Srvc.Game = Hw.Srvc.Game || (function(){
         var newTmp = _monsterTmp;
         
         console.log(monster.getName());
-
-        // newTmp = newTmp.replace('{maxHp}', monster.getMaxHp());
-        // newTmp = newTmp.replace('{hp}', monster.getHp());
-        // newTmp = newTmp.replace('{name}', monster.getName());
-
+        
         newTmp = newTmp
             .replace('{maxHp}', monster.getMaxHp())
             .replace('{hp}', monster.getHp())
             .replace('{name}', monster.getName());
+        
 
+        newTmp = $.parseHTML(newTmp);
+        // $(newTmp).children('.image').css({'background-image': monster.getImage()});
+        $(newTmp).children('.image').attr('style', 'background-image: url(\'' + monster.getImage() + '\')');
 
         return newTmp;
     };

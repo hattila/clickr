@@ -1,15 +1,17 @@
 
-Hw.Enty.Monster = Hw.Enty.Monster || (function(name, hp){
+Hw.Enty.Monster = Hw.Enty.Monster || (function(name, hp, image){
 
     /**
      * Properties
      */
     var _hp, _maxHp;
     var _name;
+    var _image;
 
     // TODO: validation
     _hp = _maxHp = hp;
     _name = name;
+    _image = image;
         
     // var init = function (hp, name)
     // {
@@ -19,6 +21,9 @@ Hw.Enty.Monster = Hw.Enty.Monster || (function(name, hp){
 
     var getName = function () {
         return _name;
+    };
+    var getImage = function () {
+        return _image;
     };
     var getHp = function () {
         return _hp;
@@ -39,6 +44,7 @@ Hw.Enty.Monster = Hw.Enty.Monster || (function(name, hp){
     return {
         // init: init,
         getName: getName,
+        getImage: getImage,
         getHp: getHp,
         getMaxHp: getMaxHp,
         
