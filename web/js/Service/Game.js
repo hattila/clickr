@@ -15,7 +15,7 @@ Hw.Srvc.Game = Hw.Srvc.Game || (function(){
         // var mob = Hw.Srvc.Spawner.spawnRandom();
         // $('#game-field').append(_getMonsterTmp(mob));
 
-        Hw.Srvc.Spawner.spawnMonstersToAField($('#game-field'), 5, 1000);
+        Hw.Srvc.Spawner.spawnMonstersToAField($('#game-field'), 50, 200);
 
         /**
          * Subscribe demo
