@@ -44,9 +44,11 @@ div#page-container div.right-pane div.row.border-top {
  * Game Field
  */
 #game-field {
+	position: relative;
 	width: 600px;
 	height: 600px;
 	border: 1px dashed;
+	margin: 50px auto 0px;
 }
 
 

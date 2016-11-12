@@ -6,7 +6,7 @@
 	height: 120px;
 
 	opacity: 1;
-	transition: opacity 0.2s;
+	transition: opacity 0.2s, top 0.2s, left 0.2s ;
 }
 .monster .health-bar-container {
 	position: relative;

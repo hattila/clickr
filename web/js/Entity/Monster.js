@@ -9,7 +9,9 @@ Hw.Enty.Monster = Hw.Enty.Monster || (function(template, name, image, hp){
     var _image;
     var _template;
     var _top, _left;
-        
+
+    var _domElement;
+
     // TODO: validation
     _hp = _maxHp = hp;
     _name = name;
@@ -37,7 +39,21 @@ Hw.Enty.Monster = Hw.Enty.Monster || (function(template, name, image, hp){
     var getMaxHp = function () {
         return _maxHp;
     };
-        
+    var getTop = function () {
+        return _top;
+    };
+    var getLeft = function () {
+        return _left;
+    };
+
+    var setPosition = function (top, left) {
+        _top = top;
+        _left = left;
+
+        var style = 'top: ' + _top + 'px; left: ' + _left + 'px;';
+        $(_template).attr('style', style);
+    };
+
     var recDamage = function (damage) {
         _hp = damage < _hp ? _hp - damage : 0;
         _updateHealth();
@@ -50,7 +66,7 @@ Hw.Enty.Monster = Hw.Enty.Monster || (function(template, name, image, hp){
     };
 
     var getMonsterHtml = function () {
-        console.log(getName());
+        // console.log(getName());
 
         _template = _template
             .replace(/{maxHp}/g, getMaxHp())
@@ -100,7 +116,11 @@ Hw.Enty.Monster = Hw.Enty.Monster || (function(template, name, image, hp){
         getImage: getImage,
         getHp: getHp,
         getMaxHp: getMaxHp,
-        
+        getTop: getTop,
+        getLeft: getLeft,
+
+        setPosition: setPosition,
+
         recDamage: recDamage,
         recHeal: recHealing,
         getMonsterHtml: getMonsterHtml

@@ -48,6 +48,9 @@ Hw.Srvc.Spawner = Hw.Srvc.Spawner || (function(){
                     try {
                         var monster = _spawnRandomMonster();
                         $(field).append(monster.getMonsterHtml());
+
+                        $.publish('/monster/spawns', monster);
+
                         idx++;
                     } catch(err) {
                         clearTimeout(intervalVar);
