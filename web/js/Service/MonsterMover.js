@@ -4,12 +4,18 @@ Hw.Srvc.MonsterMover = (function(){
     var _boardWidth = 600;
     var _boardHeight = 600;
 
+    var _moveIntervals = [];
+
     /**
      * Listen to events
      */
     var init = function () {
         $.subscribe('/monster/spawns', function (e, monster){
             _attachMonsterMover(monster);
+        });
+
+        $.subscribe('/monster/dies', function (e, monsterId){
+            _clearMoveInterval(monsterId);
         });
     };
 
@@ -27,13 +33,31 @@ Hw.Srvc.MonsterMover = (function(){
             var newLeft = Math.floor(Math.random() * 500);
 
             monster.setPosition(newTop, newLeft);
-
         },1000);
 
+        _moveIntervals.push({
+            id: monster.getId(),
+            interval: moveInterval
+        })
 
     };
 
+    var _clearMoveInterval = function (monsterId) {
+        var currentMoveIntervalIndex = _moveIntervals.findIndex(function(e){
+            return e.id == monsterId;
+        });
+
+        clearInterval(_moveIntervals[currentMoveIntervalIndex].interval);
+
+        _moveIntervals.splice(currentMoveIntervalIndex, 1);
+    };
+
+    var getMoveIntervals = function () {
+        return _moveIntervals;
+    };
+
     return {
-        init: init
+        init: init,
+        getMoveIntervals: getMoveIntervals
     }
 })();

@@ -4,13 +4,12 @@ Hw.Enty.Monster = Hw.Enty.Monster || (function(template, name, image, hp){
     /**
      * Properties
      */
+    var _id = Hw.Srvc.MonsterIdProvider.getNewId();
     var _hp, _maxHp;
     var _name;
     var _image;
     var _template;
     var _top, _left;
-
-    var _domElement;
 
     // TODO: validation
     _hp = _maxHp = hp;
@@ -20,13 +19,9 @@ Hw.Enty.Monster = Hw.Enty.Monster || (function(template, name, image, hp){
     _top = Math.floor(Math.random() * 500);
     _left = Math.floor(Math.random() * 500);
 
-        
-    // var init = function (hp, name)
-    // {
-    //     _hp = _maxHp = hp;
-    //     _name = name;
-    // };
-
+    var getId = function () {
+        return _id;
+    };
     var getName = function () {
         return _name;
     };
@@ -57,6 +52,12 @@ Hw.Enty.Monster = Hw.Enty.Monster || (function(template, name, image, hp){
     var recDamage = function (damage) {
         _hp = damage < _hp ? _hp - damage : 0;
         _updateHealth();
+
+        if (0 === _hp) {
+
+            $.publish('/monster/dies', _id);
+        }
+
         return _hp;
     };
     var recHealing = function (heal) {
@@ -66,21 +67,19 @@ Hw.Enty.Monster = Hw.Enty.Monster || (function(template, name, image, hp){
     };
 
     var getMonsterHtml = function () {
-        // console.log(getName());
 
         _template = _template
+            .replace('{id}', _id)
             .replace(/{maxHp}/g, getMaxHp())
             .replace(/{hp}/g, getHp())
             .replace('{name}', getName());
 
-
         _template = $.parseHTML(_template);
         // $(newTmp).children('.image').css({'background-image': getImage()});
 
-        var style = 'top: ' + _top + 'px; left: ' + _left + 'px;';
-        var imageStyle = 'background-image: url(\'' + getImage() + '\');';
+        setPosition(_top, _left);
 
-        $(_template).attr('style', style);
+        var imageStyle = 'background-image: url(\'' + getImage() + '\');';
         $(_template).children('.image').attr('style', imageStyle);
 
         $(_template).children('.hit-box').click(function(){
@@ -112,6 +111,7 @@ Hw.Enty.Monster = Hw.Enty.Monster || (function(template, name, image, hp){
         
     return {
         // init: init,
+        getId: getId,
         getName: getName,
         getImage: getImage,
         getHp: getHp,

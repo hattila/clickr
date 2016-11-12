@@ -7,7 +7,7 @@ Hw.Enty.Player = Hw.Enty.Player || (function(){
      * @type {number}
      * @private
      */
-    var _basedamage = 1;
+    var _basedamage = 10;
 
     var getDamage = function () {
         return _basedamage;

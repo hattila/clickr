@@ -20,8 +20,8 @@ Hw.Srvc.Game = Hw.Srvc.Game || (function(){
         /**
          * Subscribe demo
          */
-        $.subscribe('/monster/dies', function(e, ele){
-            
+        $.subscribe('/monster/dies', function(e, monsterId){
+            console.log('monster died: ' + monsterId);
         });
     };
 
