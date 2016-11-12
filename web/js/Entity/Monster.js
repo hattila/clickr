@@ -11,6 +11,9 @@ Hw.Enty.Monster = Hw.Enty.Monster || (function(template, name, image, hp){
     var _template;
     var _top, _left;
 
+    // TODO: ??
+    var _canPublishDeath = true;
+
     // TODO: validation
     _hp = _maxHp = hp;
     _name = name;
@@ -53,7 +56,9 @@ Hw.Enty.Monster = Hw.Enty.Monster || (function(template, name, image, hp){
         _hp = damage < _hp ? _hp - damage : 0;
         _updateHealth();
 
-        if (0 === _hp) {
+        if (0 === _hp && _canPublishDeath) {
+            _canPublishDeath = false;
+            _removeMonster();
 
             $.publish('/monster/dies', _id);
         }
@@ -107,6 +112,14 @@ Hw.Enty.Monster = Hw.Enty.Monster || (function(template, name, image, hp){
             backgroundColor: bgColor
         });
         $(_template).children('.health-bar-container').children('.health').text(_hp + ' / ' + _maxHp);
+    };
+
+    var _removeMonster = function () {
+
+        $(_template).fadeOut(200, function(){
+            $(_template).remove();
+        });
+
     };
         
     return {
