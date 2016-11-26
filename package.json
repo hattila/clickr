@@ -1,0 +1,27 @@
+{
+  "name": "clickr",
+  "version": "1.0.0",
+  "description": "Clicking game",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hattila/clickr.git"
+  },
+  "keywords": [
+    "click",
+    "clicking",
+    "game"
+  ],
+  "author": "Attila Hejjas",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hattila/clickr/issues"
+  },
+  "homepage": "https://github.com/hattila/clickr#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
