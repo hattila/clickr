@@ -30,6 +30,7 @@ Hw.Srvc.Spawner = Hw.Srvc.Spawner || (function(){
     };
 
     /**
+     * Spawn a given number of random Monsters to a specified field with an interval.
      *
      * @param field
      * @param numberOfMonsters
