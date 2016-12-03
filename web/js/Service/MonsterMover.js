@@ -33,7 +33,7 @@ Hw.Srvc.MonsterMover = (function(){
             var newLeft = Math.floor(Math.random() * 500);
 
             monster.setPosition(newTop, newLeft);
-        },1000);
+        },2000);
 
         _moveIntervals.push({
             id: monster.getId(),
