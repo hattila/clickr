@@ -58,7 +58,7 @@ Hw.Enty.Monster = Hw.Enty.Monster || (function(template, name, image, hp){
 
         if (0 === _hp && _canPublishDeath) {
             _canPublishDeath = false;
-            _removeMonster();
+            removeMonster();
 
             $.publish('/monster/dies', _id);
         }
@@ -114,12 +114,12 @@ Hw.Enty.Monster = Hw.Enty.Monster || (function(template, name, image, hp){
         $(_template).children('.health-bar-container').children('.health').text(_hp + ' / ' + _maxHp);
     };
 
-    var _removeMonster = function () {
+    var removeMonster = function () {
+        $.publish('/monster/removed', _id);
 
         $(_template).fadeOut(200, function(){
             $(_template).remove();
         });
-
     };
         
     return {
@@ -136,6 +136,7 @@ Hw.Enty.Monster = Hw.Enty.Monster || (function(template, name, image, hp){
 
         recDamage: recDamage,
         recHeal: recHealing,
-        getMonsterHtml: getMonsterHtml
+        getMonsterHtml: getMonsterHtml,
+        removeMonster: removeMonster
     }
 });

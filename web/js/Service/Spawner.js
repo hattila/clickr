@@ -9,10 +9,10 @@ Hw.Srvc.Spawner = Hw.Srvc.Spawner || (function(){
      * @private
      */
     var _monsters = [];
-
     var _monsterTmp = $('#monster-template').html();
-
     var _monsterSpawningActive = false;
+    var _monsterSpawningIntervalVar;
+    var _monstersOnTheField = [];
 
     var loadMonsters = function (callback) {
         $.ajax({
@@ -43,9 +43,9 @@ Hw.Srvc.Spawner = Hw.Srvc.Spawner || (function(){
             _monsterSpawningActive = true;
             var idx = 0;
 
-            var intervalVar = setInterval(function(){
+            var _monsterSpawningIntervalVar = setInterval(function(){
                 if (idx == numberOfMonsters) {
-                    clearTimeout(intervalVar);
+                    clearTimeout(_monsterSpawningIntervalVar);
                     _monsterSpawningActive = false;
                 } else {
 
@@ -53,11 +53,11 @@ Hw.Srvc.Spawner = Hw.Srvc.Spawner || (function(){
                         var monster = _spawnRandomMonster();
                         $(field).append(monster.getMonsterHtml());
 
-                        $.publish('/monster/spawns', monster);
+                        $.publish('/monster/spawned', monster);
 
                         idx++;
                     } catch(err) {
-                        clearTimeout(intervalVar);
+                        clearTimeout(_monsterSpawningIntervalVar);
                         _monsterSpawningActive = false;
 
                         console.log(err.message);
@@ -68,6 +68,56 @@ Hw.Srvc.Spawner = Hw.Srvc.Spawner || (function(){
         }
 
     };
+
+    var trackMonstersOnTheField = function () {
+        $.subscribe('/monster/spawned', function (e, monster) {
+            // console.log(monster);
+
+            _monstersOnTheField.push(monster);
+        });
+
+        $.subscribe('/monster/removed', function (e, monsterId) {
+            var currentMonsterIndex = _monstersOnTheField.findIndex(function(e){
+                return e.getId() == monsterId;
+            });
+            _monstersOnTheField.splice(currentMonsterIndex, 1);
+        });
+    };
+
+    var getMonstersOnTheField = function () {
+        return _monstersOnTheField;
+    };
+
+    /**
+     * Remove every monster
+     *  - stop spawning if it is in progress
+     */
+    var wipeField = function () {
+        clearTimeout(_monsterSpawningIntervalVar);
+        _monsterSpawningActive = false;
+
+        var count = _monstersOnTheField.length;
+
+        for (var i = 0; i < count; i++) {
+            if (_monstersOnTheField[i]) {
+                _monstersOnTheField[i].removeMonster();
+            }
+        }
+        // TODO: omg szegyenteljes
+        for (i = 0; i < count; i++) {
+            if (_monstersOnTheField[i]) {
+                _monstersOnTheField[i].removeMonster();
+            }
+        }
+        // TODO: omg szegyenteljes
+        for (i = 0; i < count; i++) {
+            if (_monstersOnTheField[i]) {
+                _monstersOnTheField[i].removeMonster();
+            }
+        }
+
+    };
+
 
     /**
      * Instantiates a random Monster from the pool
@@ -91,6 +141,9 @@ Hw.Srvc.Spawner = Hw.Srvc.Spawner || (function(){
 
     return {
         loadMonsters: loadMonsters,
-        spawnMonstersToAField: spawnMonstersToAField
+        trackMonstersOnTheField: trackMonstersOnTheField,
+        getMonstersOnTheField: getMonstersOnTheField,
+        spawnMonstersToAField: spawnMonstersToAField,
+        wipeField: wipeField
     }
 })();

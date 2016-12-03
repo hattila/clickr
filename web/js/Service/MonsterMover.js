@@ -10,11 +10,11 @@ Hw.Srvc.MonsterMover = (function(){
      * Listen to events
      */
     var init = function () {
-        $.subscribe('/monster/spawns', function (e, monster){
+        $.subscribe('/monster/spawned', function (e, monster){
             _attachMonsterMover(monster);
         });
 
-        $.subscribe('/monster/dies', function (e, monsterId){
+        $.subscribe('/monster/removed', function (e, monsterId){
             _clearMoveInterval(monsterId);
         });
     };

@@ -14,7 +14,7 @@ Hw.Srvc.Game = Hw.Srvc.Game || (function(){
             background: 'image/level_backgrounds/forest.jpg',
             monsterCount: 12,
             monstersPerWave: 2,
-            timer: 120
+            timer: 11
         },
         {
             id: 2,
@@ -42,6 +42,8 @@ Hw.Srvc.Game = Hw.Srvc.Game || (function(){
     {
         Hw.Srvc.MonsterMover.init();
 
+        Hw.Srvc.Spawner.trackMonstersOnTheField();
+
         Hw.Srvc.Spawner.loadMonsters(function(){
             _initLevel(_currentLevelIdx);
         });
@@ -56,6 +58,11 @@ Hw.Srvc.Game = Hw.Srvc.Game || (function(){
             _$gameField.css({
                 backgroundImage: 'url(' + level.background + ')'
             });
+
+            /**
+             * Start Timer
+             */
+            Hw.Srvc.Timer.reset(level.timer * 1000);
 
             Hw.Srvc.Spawner.spawnMonstersToAField(_$gameField, level.monstersPerWave, 800);
             var wave = 2;
@@ -74,12 +81,25 @@ Hw.Srvc.Game = Hw.Srvc.Game || (function(){
                 monstersKilled++;
 
                 if (monstersKilled == level.monsterCount) {
+                    // win condition
                     console.log('All monsters killed, moving on ...');
+
+                    Hw.Srvc.Timer.pause();
+
                     setTimeout(function () {
                         _currentLevelIdx++;
                         _initLevel(_currentLevelIdx);
                     }, 2000);
                 }
+            });
+
+            $.subscribe('/timer/expired', function () {
+                // loose condition
+                console.log('You have lost.');
+
+                clearInterval(levelWaveInterval);
+                Hw.Srvc.Spawner.wipeField();
+
             });
         }
     };
