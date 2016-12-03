@@ -2,12 +2,18 @@ var express = require('express');
 
 var app = express();
 
-app.get('/locations', function(request, response){
-    var cityNames = ['Caspiana', 'Indigo', 'Paradise'];
-    response.send(cityNames);
-    response.end();
-});
+/**
+ * All static files served throught this middleware
+ */
+app.use(express.static('web'));
 
-app.listen(3001, function(){
+/**
+ * Serve index.html
+ */
+// app.get('/', function (req, res) {
+//     res.sendFile(__dirname + '/web/index.html');
+// });
+
+app.listen(8080, function(){
     console.log('Running Express');
 });
