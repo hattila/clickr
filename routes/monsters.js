@@ -31,7 +31,14 @@ router.route('/:name')
         next();
     })
     .get(function (req, res) {
-        res.send(req.monsterName);
+        for (var i = 0; i < monsters.length; i++) {
+            if (monsters[i].name == req.monsterName) {
+                res.json(monsters[i]);
+                return false;
+            }
+        }
+
+        res.status(404).json('Monster not found with name: ' + req.monsterName);
     })
 ;
 
