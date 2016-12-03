@@ -73,8 +73,6 @@ Hw.Srvc.Spawner = Hw.Srvc.Spawner || (function(){
 
     var trackMonstersOnTheField = function () {
         $.subscribe('/monster/spawned', function (e, monster) {
-            // console.log(monster);
-
             _monstersOnTheField.push(monster);
         });
 

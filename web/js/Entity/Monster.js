@@ -11,7 +11,6 @@ Hw.Enty.Monster = Hw.Enty.Monster || (function(template, name, image, hp){
     var _template;
     var _top, _left;
 
-    // TODO: ??
     var _canPublishDeath = true;
 
     // TODO: validation
@@ -72,7 +71,6 @@ Hw.Enty.Monster = Hw.Enty.Monster || (function(template, name, image, hp){
     };
 
     var getMonsterHtml = function () {
-
         _template = _template
             .replace('{id}', _id)
             .replace(/{maxHp}/g, getMaxHp())
@@ -80,7 +78,6 @@ Hw.Enty.Monster = Hw.Enty.Monster || (function(template, name, image, hp){
             .replace('{name}', getName());
 
         _template = $.parseHTML(_template);
-        // $(newTmp).children('.image').css({'background-image': getImage()});
 
         setPosition(_top, _left);
 

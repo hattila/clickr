@@ -1,6 +1,3 @@
-/**
- * Created by hattila on 2016.04.21..
- */
 
 Hw.Srvc.Game = Hw.Srvc.Game || (function(){
 
@@ -74,7 +71,6 @@ Hw.Srvc.Game = Hw.Srvc.Game || (function(){
             var wave = 2;
 
             var levelWaveInterval = setInterval(function () {
-                console.log(wave);
 
                 if (wave <= waves) {
                     Hw.Srvc.Spawner.spawnMonstersToAField(_$gameField, level.monstersPerWave, level.delayInWave);

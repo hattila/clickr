@@ -27,7 +27,6 @@ Hw.Srvc.MonsterMover = (function(){
         var mTop = monster.getTop();
         var mLeft = monster.getLeft();
 
-        // TODO: clear interval when monster dies
         var moveInterval = setInterval(function () {
             var newTop = Math.floor(Math.random() * 500);
             var newLeft = Math.floor(Math.random() * 500);
