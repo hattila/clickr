@@ -1,23 +1,10 @@
 var express = require('express');
+var monster = require('../entities/monster');
 var router = express.Router();
-
-var monsters = [
-    {
-        name: 'John',
-        hp: 10
-    },
-    {
-        name: 'Steve',
-        hp: 12
-    }
-];
 
 router.route('/')
     .get(function (req, res) {
-        res.json({
-            status: 'success',
-            data: monsters
-        });
+        res.json(monster.getAll());
     })
 ;
 
@@ -31,14 +18,13 @@ router.route('/:name')
         next();
     })
     .get(function (req, res) {
-        for (var i = 0; i < monsters.length; i++) {
-            if (monsters[i].name == req.monsterName) {
-                res.json(monsters[i]);
-                return false;
-            }
-        }
+        var foundMonster = monster.getMonsterByName(req.monsterName);
 
-        res.status(404).json('Monster not found with name: ' + req.monsterName);
+        if (foundMonster) {
+            res.json(foundMonster);
+        } else {
+            res.status(404).json('Monster not found with name: ' + req.monsterName);
+        }
     })
 ;
 
