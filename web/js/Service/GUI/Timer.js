@@ -80,7 +80,8 @@ Hw.Srvc.Timer = (function(){
                 _updateContainer();
 
                 if (_time <= 0) {
-                    reset()
+                    reset();
+                    $.publish('/timer/expired');
                 }
             }, _timerInterval);
         } else {
@@ -93,7 +94,6 @@ Hw.Srvc.Timer = (function(){
         _timerInProgress = false;
         clearTimeout(_timerIntervalVar);
         _updateContainer();
-        $.publish('/timer/expired');
 
         if (time) {
             start(time);

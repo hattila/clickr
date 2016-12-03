@@ -52,6 +52,20 @@ div#page-container div.right-pane div.row.border-top {
 	background-position: center center;
 }
 
+#ultimate-message {
+	position: absolute;
+	top: 48%;
+	width: 100%;
+	text-align: center;
+	font-size: 30px;
+	display: none;
+}
+#ultimate-message.good {
+	color: #0f9d58;
+}
+#ultimate-message.bad {
+	color: #ff2200;
+}
 
 /**
  * Materialize Overwrites

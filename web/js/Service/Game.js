@@ -14,7 +14,7 @@ Hw.Srvc.Game = Hw.Srvc.Game || (function(){
             background: 'image/level_backgrounds/forest.jpg',
             monsterCount: 12,
             monstersPerWave: 2,
-            timer: 11
+            timer: 31
         },
         {
             id: 2,
@@ -22,7 +22,7 @@ Hw.Srvc.Game = Hw.Srvc.Game || (function(){
             background: 'image/level_backgrounds/cemetery.jpg',
             monsterCount: 18,
             monstersPerWave: 3,
-            timer: 130
+            timer: 36
         },
         {
             id: 3,
@@ -30,7 +30,7 @@ Hw.Srvc.Game = Hw.Srvc.Game || (function(){
             background: 'image/level_backgrounds/village.jpg',
             monsterCount: 27,
             monstersPerWave: 3,
-            timer: 150
+            timer: 51
         }
     ];
 
@@ -75,7 +75,7 @@ Hw.Srvc.Game = Hw.Srvc.Game || (function(){
                     console.log('Levels monsters have spawned. Clearing wave interval.');
                     clearInterval(levelWaveInterval);
                 }
-            }, 5000);
+            }, 4000);
 
             $.subscribe('/monster/dies', function(e, monsterId){
                 monstersKilled++;
@@ -85,6 +85,14 @@ Hw.Srvc.Game = Hw.Srvc.Game || (function(){
                     console.log('All monsters killed, moving on ...');
 
                     Hw.Srvc.Timer.pause();
+
+                    if (_currentLevelIdx + 1 == _levels.length) {
+                        $('#ultimate-message')
+                            .html('You win.')
+                            .removeClass('bad')
+                            .addClass('good')
+                            .fadeIn(200);
+                    }
 
                     setTimeout(function () {
                         _currentLevelIdx++;
@@ -96,6 +104,11 @@ Hw.Srvc.Game = Hw.Srvc.Game || (function(){
             $.subscribe('/timer/expired', function () {
                 // loose condition
                 console.log('You have lost.');
+                $('#ultimate-message')
+                    .html('You have lost.')
+                    .removeClass('good')
+                    .addClass('bad')
+                    .fadeIn(200);
 
                 clearInterval(levelWaveInterval);
                 Hw.Srvc.Spawner.wipeField();
