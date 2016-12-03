@@ -65,6 +65,8 @@ Hw.Srvc.Spawner = Hw.Srvc.Spawner || (function(){
 
                 }
             }, interval);
+        } else {
+            console.warn('Trying to spawn a new wave, but it is already spawning!');
         }
 
     };

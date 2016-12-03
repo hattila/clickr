@@ -14,7 +14,9 @@ Hw.Srvc.Game = Hw.Srvc.Game || (function(){
             background: 'image/level_backgrounds/forest.jpg',
             monsterCount: 12,
             monstersPerWave: 2,
-            timer: 31
+            timer: 31,
+            waveTimer: 2450,
+            delayInWave: 800
         },
         {
             id: 2,
@@ -22,7 +24,9 @@ Hw.Srvc.Game = Hw.Srvc.Game || (function(){
             background: 'image/level_backgrounds/cemetery.jpg',
             monsterCount: 18,
             monstersPerWave: 3,
-            timer: 36
+            timer: 36,
+            waveTimer: 3000,
+            delayInWave: 600
         },
         {
             id: 3,
@@ -30,7 +34,9 @@ Hw.Srvc.Game = Hw.Srvc.Game || (function(){
             background: 'image/level_backgrounds/village.jpg',
             monsterCount: 27,
             monstersPerWave: 3,
-            timer: 51
+            timer: 51,
+            waveTimer: 4000,
+            delayInWave: 500
         }
     ];
 
@@ -64,18 +70,20 @@ Hw.Srvc.Game = Hw.Srvc.Game || (function(){
              */
             Hw.Srvc.Timer.reset(level.timer * 1000);
 
-            Hw.Srvc.Spawner.spawnMonstersToAField(_$gameField, level.monstersPerWave, 800);
+            Hw.Srvc.Spawner.spawnMonstersToAField(_$gameField, level.monstersPerWave, level.delayInWave);
             var wave = 2;
 
             var levelWaveInterval = setInterval(function () {
+                console.log(wave);
+
                 if (wave <= waves) {
-                    Hw.Srvc.Spawner.spawnMonstersToAField(_$gameField, level.monstersPerWave, 800);
+                    Hw.Srvc.Spawner.spawnMonstersToAField(_$gameField, level.monstersPerWave, level.delayInWave);
                     wave++;
                 } else {
                     console.log('Levels monsters have spawned. Clearing wave interval.');
                     clearInterval(levelWaveInterval);
                 }
-            }, 4000);
+            }, level.waveTimer);
 
             $.subscribe('/monster/dies', function(e, monsterId){
                 monstersKilled++;
