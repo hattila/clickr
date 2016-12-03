@@ -1,30 +1,33 @@
 
 Hw.Srvc.Spawner = Hw.Srvc.Spawner || (function(){
 
-    var _monsterNames = [
-        'Willy',
-        'Donna',
-        'George',
-        'Sam',
-        'Mark',
-        'Hugo',
-        'Abigail',
-        'Haily',
-        'Sebastian',
-        'Tamara',
-        'Joel',
-        'Carla'
-    ];
-
-    var _monsterImages = [
-        'image/drawn_bat.jpg',
-        'image/drawn_skeleton.jpg',
-        'image/drawn_skeleton_warrior.jpg'
-    ];
+    /**
+     * Container for the Monster entities. See:
+     *  - entities/monster.js
+     *
+     * @type {Array}
+     * @private
+     */
+    var _monsters = [];
 
     var _monsterTmp = $('#monster-template').html();
 
     var _monsterSpawningActive = false;
+
+    var loadMonsters = function (callback) {
+        $.ajax({
+            url: '/monsters',
+            method: 'GET',
+            success: function (data) {
+                _monsters = data;
+
+                callback();
+            },
+            error: function () {
+
+            }
+        });
+    };
 
     /**
      *
@@ -64,16 +67,29 @@ Hw.Srvc.Spawner = Hw.Srvc.Spawner || (function(){
         }
 
     };
-        
+
+    /**
+     * Instantiates a random Monster from the pool
+     *
+     * @returns Monster
+     * @private
+     */
     var _spawnRandomMonster = function () {
-        var name = _monsterNames[Math.floor(Math.random() * (_monsterNames.length))];
-        var hp = Math.floor(Math.random() * 6 + 5); // 5..10
-        var image = _monsterImages[Math.floor(Math.random() * (_monsterImages.length))];
-        
-        return new Hw.Enty.Monster(_monsterTmp, name, image, hp);
+        var randomMonster = _monsters[Math.floor(Math.random() * (_monsters.length))];
+        var hp = typeof randomMonster.hp === 'object' ?
+            randomMonster.hp[Math.floor(Math.random() * (randomMonster.hp.length))] :
+            randomMonster.hp;
+
+        return new Hw.Enty.Monster(
+            _monsterTmp,
+            randomMonster.name,
+            randomMonster.image,
+            hp
+        );
     };
 
     return {
+        loadMonsters: loadMonsters,
         spawnMonstersToAField: spawnMonstersToAField
     }
 })();
