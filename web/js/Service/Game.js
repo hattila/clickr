@@ -87,21 +87,7 @@ Hw.Srvc.Game = Hw.Srvc.Game || (function(){
                 if (monstersKilled == level.monsterCount) {
                     // win condition
                     console.log('All monsters killed, moving on ...');
-
-                    Hw.Srvc.Timer.pause();
-
-                    if (_currentLevelIdx + 1 == _levels.length) {
-                        $('#ultimate-message')
-                            .html('You win.')
-                            .removeClass('bad')
-                            .addClass('good')
-                            .fadeIn(200);
-                    }
-
-                    setTimeout(function () {
-                        _currentLevelIdx++;
-                        _initLevel(_currentLevelIdx);
-                    }, 2000);
+                    _levelCompleted(level);
                 }
             });
 
@@ -119,6 +105,44 @@ Hw.Srvc.Game = Hw.Srvc.Game || (function(){
 
             });
         }
+    };
+
+    var _levelCompleted = function () {
+        var menu = {
+            title: 'Level Complete!',
+            actions: [
+                {
+                    title: 'Just a button',
+                    action: function () {
+                        console.log('only a placeholder');
+                    }
+                },
+                {
+                    title: 'Next level',
+                    action: function () {
+                        Hw.Srvc.IngameMenu.close();
+                        _initLevel(_currentLevelIdx);
+                    }
+                }
+            ]
+        };
+
+        Hw.Srvc.Timer.pause();
+
+        if (_currentLevelIdx + 1 == _levels.length) {
+            $('#ultimate-message')
+                .html('You win.')
+                .removeClass('bad')
+                .addClass('good')
+                .fadeIn(200);
+
+            menu.title = 'Game Completed!';
+            menu.actions = [];
+        }
+
+        _currentLevelIdx++;
+
+        Hw.Srvc.IngameMenu.open(menu);
     };
 
     return {

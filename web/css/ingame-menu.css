@@ -1,0 +1,29 @@
+div#ingame-menu {
+
+	background-color: #444444;
+	border: 1px solid #000000;
+	border-radius: 5px;
+
+	color: #eeeeee;
+
+	padding: 15px;
+
+	position: absolute;
+	left: -500px;
+
+	transition: left 1s;
+}
+
+div#ingame-menu.open {
+	left: 50%;
+}
+
+
+div#ingame-menu a.menu-btn {
+	background-color: #00acc1;
+	color: #eeeeee;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 1);
+	padding: 10px;
+	border-radius: 3px;
+	margin: 5px;
+}
