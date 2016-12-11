@@ -82,10 +82,20 @@ Hw.Enty.Monster = Hw.Enty.Monster || (function(template, name, image, hp){
         setPosition(_top, _left);
 
         var imageStyle = 'background-image: url(\'' + getImage() + '\');';
-        $(_template).children('.image').attr('style', imageStyle);
+        $(_template).children('.hit-box').attr('style', imageStyle);
 
         $(_template).children('.hit-box').click(function(){
             recDamage(Player.getDamage());
+
+            var self = $(this);
+            self.css({
+                opacity: 0.8
+            });
+            setTimeout(function () {
+                self.css({
+                    opacity: 1
+                });
+            }, 20);
         });
         
         return _template;
