@@ -89,13 +89,13 @@ Hw.Enty.Monster = Hw.Enty.Monster || (function(template, name, image, hp){
 
             var self = $(this);
             self.css({
-                opacity: 0.8
+                opacity: 0.9
             });
             setTimeout(function () {
                 self.css({
                     opacity: 1
                 });
-            }, 20);
+            }, 50);
         });
         
         return _template;
