@@ -27,11 +27,6 @@ Hw.Srvc.Spawner = Hw.Srvc.Spawner || (function(){
 
             }
         });
-
-        $('.monster .hit-box').on('mousedown', function () {
-            console.log('mouse over a monster');
-        });
-
     };
 
     /**

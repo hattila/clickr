@@ -84,7 +84,11 @@ Hw.Enty.Monster = Hw.Enty.Monster || (function(template, name, image, hp){
         var imageStyle = 'background-image: url(\'' + getImage() + '\');';
         $(_template).children('.hit-box').attr('style', imageStyle);
 
-        $(_template).children('.hit-box').click(function(){
+        /**
+         * Processing the click on the "mousedown" is quicker and more
+         * responsive than "click", which triggers on mouse up
+         */
+        $(_template).children('.hit-box').mousedown(function () {
             recDamage(Player.getDamage());
 
             var self = $(this);
@@ -96,6 +100,10 @@ Hw.Enty.Monster = Hw.Enty.Monster || (function(template, name, image, hp){
                     opacity: 1
                 });
             }, 50);
+        });
+
+        $(_template).children('.hit-box').click(function(){
+
         });
         
         return _template;
