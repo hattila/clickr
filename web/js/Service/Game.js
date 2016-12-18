@@ -93,16 +93,8 @@ Hw.Srvc.Game = Hw.Srvc.Game || (function(){
 
             $.subscribe('/timer/expired', function () {
                 // loose condition
-                console.log('You have lost.');
-                $('#ultimate-message')
-                    .html('You have lost.')
-                    .removeClass('good')
-                    .addClass('bad')
-                    .fadeIn(200);
-
                 clearInterval(levelWaveInterval);
-                Hw.Srvc.Spawner.wipeField();
-
+                _levelFailed();
             });
         }
     };
@@ -142,6 +134,32 @@ Hw.Srvc.Game = Hw.Srvc.Game || (function(){
 
         _currentLevelIdx++;
 
+        Hw.Srvc.IngameMenu.open(menu);
+    };
+
+    var _levelFailed = function () {
+        console.log('You have lost.');
+
+        var menu = {
+            title: 'Level Failed!',
+            actions: [
+                {
+                    title: 'Restart level',
+                    action: function () {
+                        Hw.Srvc.IngameMenu.close();
+                        _initLevel(_currentLevelIdx);
+                    }
+                }
+            ]
+        };
+
+        $('#ultimate-message')
+            .html('You have lost.')
+            .removeClass('good')
+            .addClass('bad')
+            .fadeIn(200);
+
+        Hw.Srvc.Spawner.wipeField();
         Hw.Srvc.IngameMenu.open(menu);
     };
 
