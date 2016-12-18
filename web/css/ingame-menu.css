@@ -18,6 +18,9 @@ div#ingame-menu.open {
 	left: 50%;
 }
 
+div#ingame-menu .title {
+	margin: 0 0 15px 0;
+}
 
 div#ingame-menu a.menu-btn {
 	background-color: #00acc1;
@@ -26,4 +29,5 @@ div#ingame-menu a.menu-btn {
 	padding: 10px;
 	border-radius: 3px;
 	margin: 5px;
+	display: block;
 }
