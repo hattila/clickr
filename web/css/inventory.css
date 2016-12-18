@@ -27,18 +27,38 @@ div.inventory-grid div.inv-row div.inv-slot {
 	border: 1px solid #494949;
 }
 
-div.inventory-grid div.inv-row div.inv-slot.head {
-
-}
-div.inventory-grid div.inv-row div.inv-slot.head:before {
+div.inventory-grid div.inv-row div.inv-slot:before {
 	content: "";
 	position: absolute;
 	width: 100%;
 	height: 100%;
-	background-image: url(../image/gui/hat.png);
 	background-position: center;
-	background-size: 46px 46px;
 	background-repeat: no-repeat;
-	background-blend-mode: unset;
+	background-size: 36px 36px;
 	opacity: 0.3;
+}
+
+div.inventory-grid div.inv-row div.inv-slot.head { }
+div.inventory-grid div.inv-row div.inv-slot.head:before {
+	background-image: url(../image/gui/hat.png);
+	background-size: 46px 46px;
+}
+
+div.inventory-grid div.inv-row div.inv-slot.chest { }
+div.inventory-grid div.inv-row div.inv-slot.chest:before {
+	background-image: url(../image/gui/vest.png);
+	background-size: 36px 34px;
+}
+
+div.inventory-grid div.inv-row div.inv-slot.legs { }
+div.inventory-grid div.inv-row div.inv-slot.legs:before {
+	background-image: url(../image/gui/pants.png);
+}
+
+div.inventory-grid div.inv-row div.inv-slot.hand { }
+div.inventory-grid div.inv-row div.inv-slot.hand.left:before {
+	background-image: url(../image/gui/left_hand.png);
+}
+div.inventory-grid div.inv-row div.inv-slot.hand.right:before {
+	background-image: url(../image/gui/right_hand.png);
 }
