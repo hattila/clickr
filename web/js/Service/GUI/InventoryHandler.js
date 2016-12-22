@@ -14,12 +14,13 @@ Hw.Srvc.InventoryHandler = (function(){
     var _$invItem = $('.inv-item');
 
     _$invItem.draggable({
-        revert: 'invalid',
-        // helper: 'clone'
+        revert: 'invalid'
     });
 
     $('.inv-slot').droppable({
-        accepts: _$invItem,
+        accept: function (draggable) {
+            return (draggable.hasClass('inv-item') && '' === $.trim($(this).html()));
+        },
         drop: function (event, ui) {
             console.log('an element has been dropped on me!', ui);
             ui.draggable

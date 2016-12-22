@@ -28,6 +28,9 @@ div.inventory-grid div.inv-row div.inv-slot {
 		inset 1px 1px 0 #666,
 		inset -1px -1px 0 #666;
 }
+div.inventory-grid div.inv-row div.inv-slot.ui-droppable-hover {
+	background-color: #666;
+}
 
 div.inventory-grid div.inv-row div.inv-slot:before {
 	content: "";
