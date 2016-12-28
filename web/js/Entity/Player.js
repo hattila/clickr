@@ -7,17 +7,18 @@ Hw.Enty.Player = Hw.Enty.Player || (function(){
      * @type {number}
      * @private
      */
-    var _damage = 10;
+    var _damage = 1;
     var _stamina = 100;
     var _sanity = 100;
-    var _xp = 0;
     var _level = 1;
+    var _xp = 0;
 
     var _statsContainerId = '#stats';
     var _$stats = {
         damage: $(_statsContainerId + ' .damage'),
         stamina: $(_statsContainerId + ' .stamina'),
         sanity: $(_statsContainerId + ' .sanity'),
+        level: $(_statsContainerId + ' .level'),
         xp: $(_statsContainerId + ' .xp')
     };
 
@@ -75,9 +76,12 @@ Hw.Enty.Player = Hw.Enty.Player || (function(){
 
         if (_xp >= 10) {
             _level += 1;
+            _updateLevel();
             _damage++;
             _updateDamage();
             _xp = _xp - 10;
+
+            Materialize.toast("Level Up! Damage increased", 4000);
         }
 
         _updateXp();
@@ -116,6 +120,10 @@ Hw.Enty.Player = Hw.Enty.Player || (function(){
 
     var _updateSanity = function () {
         _$stats.sanity.text(_sanity);
+    };
+
+    var _updateLevel = function () {
+        _$stats.level.text(_level);
     };
 
     var _updateXp = function () {
