@@ -91,11 +91,24 @@ Hw.Srvc.Game = Hw.Srvc.Game || (function(){
                 }
             });
 
+            // loose conditions
             $.subscribe('/timer/expired', function () {
-                // loose condition
                 clearInterval(levelWaveInterval);
                 _levelFailed();
             });
+
+            $.subscribe('/player/dies', function () {
+                Hw.Srvc.Timer.pause();
+                clearInterval(levelWaveInterval);
+                _levelFailed();
+            });
+
+            $.subscribe('/player/goesInsane', function () {
+                Hw.Srvc.Timer.pause();
+                clearInterval(levelWaveInterval);
+                _levelFailed();
+            });
+
         }
     };
 
