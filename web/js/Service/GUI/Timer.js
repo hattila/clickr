@@ -81,7 +81,7 @@ Hw.Srvc.Timer = (function(){
 
                 if (_time <= 0) {
                     reset();
-                    $.publish('/timer/expired');
+                    $.publish('/timer/expires');
                 }
             }, _timerInterval);
         } else {

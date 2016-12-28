@@ -92,7 +92,7 @@ Hw.Srvc.Game = Hw.Srvc.Game || (function(){
             });
 
             // loose conditions
-            $.subscribe('/timer/expired', function () {
+            $.subscribe('/timer/expires', function () {
                 clearInterval(levelWaveInterval);
                 _levelFailed();
             });

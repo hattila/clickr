@@ -53,7 +53,7 @@ Hw.Srvc.Spawner = Hw.Srvc.Spawner || (function(){
                         var monster = _spawnRandomMonster();
                         $(field).append(monster.getMonsterHtml());
 
-                        $.publish('/monster/spawned', monster);
+                        $.publish('/monster/spawns', monster);
 
                         idx++;
                     } catch(err) {
@@ -72,7 +72,7 @@ Hw.Srvc.Spawner = Hw.Srvc.Spawner || (function(){
     };
 
     var trackMonstersOnTheField = function () {
-        $.subscribe('/monster/spawned', function (e, monster) {
+        $.subscribe('/monster/spawns', function (e, monster) {
             _monstersOnTheField.push(monster);
         });
 
