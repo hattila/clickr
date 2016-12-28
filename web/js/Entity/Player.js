@@ -7,8 +7,7 @@ Hw.Enty.Player = Hw.Enty.Player || (function(){
      * @type {number}
      * @private
      */
-    var _basedamage = 1;
-    var _damage = _basedamage;
+    var _damage = 10;
     var _stamina = 100;
     var _sanity = 100;
     var _xp = 0;
@@ -20,10 +19,6 @@ Hw.Enty.Player = Hw.Enty.Player || (function(){
         stamina: $(_statsContainerId + ' .stamina'),
         sanity: $(_statsContainerId + ' .sanity'),
         xp: $(_statsContainerId + ' .xp')
-    };
-
-    var getBaseDamage = function () {
-        return _basedamage;
     };
 
     var getDamage = function () {
@@ -65,6 +60,35 @@ Hw.Enty.Player = Hw.Enty.Player || (function(){
     };
 
     /**
+     * Increase Player experience
+     * If the xp cap is reached then level up.
+     * TODO: Handle xp required for a given level
+     *
+     * @param xp
+     * @returns {{level: number, xp: number}}
+     * @private
+     */
+    var _awardXp = function (xp) {
+        xp = xp || 1;
+
+        _xp += xp;
+
+        if (_xp >= 10) {
+            _level += 1;
+            _damage++;
+            _updateDamage();
+            _xp = _xp - 10;
+        }
+
+        _updateXp();
+
+        return {
+            level: _level,
+            xp: _xp
+        }
+    };
+
+    /**
      * One function to handle all the property DOM updates
      *
      * @param stat
@@ -98,9 +122,16 @@ Hw.Enty.Player = Hw.Enty.Player || (function(){
         _$stats.xp.text(_xp);
     };
 
+    var _setupEventListeners = function () {
+        // TODO: get a Monster Entity and get/calc the xp given by it.
+        $.subscribe('/monster/dies', function (e, monsterId) {
+            _awardXp();
+        });
+    };
+
+    _setupEventListeners();
 
     return {
-        getBaseDamage: getBaseDamage,
         getDamage: getDamage,
 
         recDamage: recDamage,
