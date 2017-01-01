@@ -82,7 +82,7 @@ Hw.Enty.Monster = Hw.Enty.Monster || (function(template, name, image, hp){
         setPosition(_top, _left);
 
         var imageStyle = 'background-image: url(\'' + getImage() + '\');';
-        $(_template).children('.hit-box').attr('style', imageStyle);
+        $(_template).children('.image').attr('style', imageStyle);
 
         /**
          * Processing the click on the "mousedown" is quicker and more
@@ -93,11 +93,11 @@ Hw.Enty.Monster = Hw.Enty.Monster || (function(template, name, image, hp){
 
             var self = $(this);
             self.css({
-                opacity: 0.9
+                opacity: 0.15
             });
             setTimeout(function () {
                 self.css({
-                    opacity: 1
+                    opacity: 0
                 });
             }, 50);
         });
