@@ -95,10 +95,15 @@ Hw.Enty.Monster = Hw.Enty.Monster || (function(template, name, image, hp){
             self.css({
                 opacity: 0.15
             });
+
+            self.parent('div.monster').children('div.image').children('div.top-left').addClass('opacity1');
+
             setTimeout(function () {
                 self.css({
                     opacity: 0
                 });
+
+                self.parent('div.monster').children('div.image').children('div.top-left').removeClass('opacity1');
             }, 50);
         });
 
