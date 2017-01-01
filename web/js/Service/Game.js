@@ -44,6 +44,7 @@ Hw.Srvc.Game = Hw.Srvc.Game || (function(){
     var init = function ()
     {
         Hw.Srvc.MonsterMover.init();
+        Hw.Srvc.MonsterDamageDealer.init();
 
         Hw.Srvc.Spawner.trackMonstersOnTheField();
 
