@@ -135,7 +135,8 @@ Hw.Srvc.Spawner = Hw.Srvc.Spawner || (function(){
             _monsterTmp,
             randomMonster.name,
             randomMonster.image,
-            hp
+            hp,
+            randomMonster.damage
         );
     };
 

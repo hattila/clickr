@@ -1,5 +1,9 @@
-
-Hw.Enty.Monster = Hw.Enty.Monster || (function(template, name, image, hp){
+/**
+ * Monster
+ *
+ * @type {Function}
+ */
+Hw.Enty.Monster = (function(template, name, image, hp, damage) {
 
     /**
      * Properties
