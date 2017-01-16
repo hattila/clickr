@@ -81,6 +81,11 @@ Hw.Enty.Monster = (function(template, name, image, hp, damage) {
 
     var dealDamage = function () {
         Player.recDamage(_damage.stamina);
+
+        $(_template).children('div.image').children('div.top-left').addClass('opacity1');
+        setTimeout(function () {
+            $(_template).children('div.image').children('div.top-left').removeClass('opacity1');
+        }, 300);
     };
 
     var getMonsterHtml = function () {

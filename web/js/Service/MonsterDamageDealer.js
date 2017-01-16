@@ -33,7 +33,7 @@ Hw.Srvc.MonsterDamageDealer = (function(){
                 monster.getDamage().stamina
             );
             monster.dealDamage();
-        },2000);
+        },2500);
 
         _damageIntervals.push({
             id: monster.getId(),
