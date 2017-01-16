@@ -3,7 +3,7 @@ var express = require('express');
 var app = express();
 
 /**
- * All static files served throught this middleware
+ * All static files served through this middleware
  */
 app.use(express.static('web'));
 
