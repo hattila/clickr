@@ -12,6 +12,7 @@ Hw.Enty.Monster = (function(template, name, image, hp, damage) {
     var _hp, _maxHp;
     var _name;
     var _image;
+    var _damage;
     var _template;
     var _top, _left;
 
@@ -21,6 +22,7 @@ Hw.Enty.Monster = (function(template, name, image, hp, damage) {
     _hp = _maxHp = hp;
     _name = name;
     _image = image;
+    _damage = damage;
     _template = template;
     _top = Math.floor(Math.random() * 500);
     _left = Math.floor(Math.random() * 500);
@@ -28,17 +30,20 @@ Hw.Enty.Monster = (function(template, name, image, hp, damage) {
     var getId = function () {
         return _id;
     };
+    var getHp = function () {
+        return _hp;
+    };
+    var getMaxHp = function () {
+        return _maxHp;
+    };
     var getName = function () {
         return _name;
     };
     var getImage = function () {
         return _image;
     };
-    var getHp = function () {
-        return _hp;
-    };
-    var getMaxHp = function () {
-        return _maxHp;
+    var getDamage = function () {
+        return _damage;
     };
     var getTop = function () {
         return _top;
@@ -74,6 +79,10 @@ Hw.Enty.Monster = (function(template, name, image, hp, damage) {
         return _hp;
     };
 
+    var dealDamage = function () {
+        Player.recDamage(_damage.stamina);
+    };
+
     var getMonsterHtml = function () {
         _template = _template
             .replace('{id}', _id)
@@ -100,14 +109,14 @@ Hw.Enty.Monster = (function(template, name, image, hp, damage) {
                 opacity: 0.15
             });
 
-            self.parent('div.monster').children('div.image').children('div.top-left').addClass('opacity1');
+            // self.parent('div.monster').children('div.image').children('div.top-left').addClass('opacity1');
 
             setTimeout(function () {
                 self.css({
                     opacity: 0
                 });
 
-                self.parent('div.monster').children('div.image').children('div.top-left').removeClass('opacity1');
+                // self.parent('div.monster').children('div.image').children('div.top-left').removeClass('opacity1');
             }, 50);
         });
 
@@ -150,9 +159,10 @@ Hw.Enty.Monster = (function(template, name, image, hp, damage) {
         // init: init,
         getId: getId,
         getName: getName,
-        getImage: getImage,
         getHp: getHp,
         getMaxHp: getMaxHp,
+        getImage: getImage,
+        getDamage: getDamage,
         getTop: getTop,
         getLeft: getLeft,
 
@@ -160,6 +170,7 @@ Hw.Enty.Monster = (function(template, name, image, hp, damage) {
 
         recDamage: recDamage,
         recHeal: recHealing,
+        dealDamage: dealDamage,
         getMonsterHtml: getMonsterHtml,
         removeMonster: removeMonster
     }

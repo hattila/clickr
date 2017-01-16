@@ -20,13 +20,19 @@ Hw.Srvc.MonsterDamageDealer = (function(){
     };
 
     /**
+     * Attaches a damageInterval to a Monster, tracks the damageIntervals
      *
      * @param monster Monster
      */
     var _attachDamageDealer = function (monster) {
 
         var damageInterval = setInterval(function () {
-            console.log('A monster (%d) tries to deal damage, but it is not implemented yet.', monster.getId());
+            console.log(
+                'Monster (id: %d) deals damage (stamina: %d)',
+                monster.getId(),
+                monster.getDamage().stamina
+            );
+            monster.dealDamage();
         },2000);
 
         _damageIntervals.push({

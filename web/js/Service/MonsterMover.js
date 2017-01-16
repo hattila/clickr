@@ -1,4 +1,7 @@
-
+/**
+ * Handles Monster movement
+ * Manage movement intervals
+ */
 Hw.Srvc.MonsterMover = (function(){
 
     var _boardWidth = 600;
@@ -20,6 +23,7 @@ Hw.Srvc.MonsterMover = (function(){
     };
 
     /**
+     * Attaches a moveInterval to Monster, tracks the moveIntervals
      *
      * @param monster Monster
      */

@@ -11,7 +11,7 @@ Hw.Srvc.Game = Hw.Srvc.Game || (function(){
             background: 'image/level_backgrounds/forest.jpg',
             monsterCount: 12,
             monstersPerWave: 2,
-            timer: 31000,
+            timer: 31,
             waveTimer: 2450,
             delayInWave: 800
         },
