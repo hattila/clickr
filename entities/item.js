@@ -8,7 +8,31 @@ module.exports = (function () {
     var _items = [
         {
             id: 1,
-            name: 'Revolver'
+            name: 'Revolver',
+            type: 'weapon',
+            image: 'image/items/pistol.jpg',
+            damage: 5
+        },
+        {
+            id: 2,
+            name: 'Revolver',
+            type: 'weapon',
+            image: 'image/items/colt_45.jpg',
+            damage: 8
+        },
+        {
+            id: 3,
+            name: 'Shotgun',
+            type: 'weapon',
+            image: 'image/items/shotgun.jpg',
+            damage: 15
+        },
+        {
+            id: 4,
+            name: 'Thomson',
+            type: 'weapon',
+            image: 'image/items/tommy.jpg',
+            damage: 22
         }
     ];
 
