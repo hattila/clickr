@@ -14,10 +14,6 @@ Hw.Srvc.InventoryHandler = (function(){
 
     var _$invItem = $('.inv-item');
 
-    _$invItem.draggable({
-        revert: 'invalid'
-    });
-
     $('.inv-slot').droppable({
         accept: function (draggable) {
             return (draggable.hasClass('inv-item') && '' === $.trim($(this).html()));
@@ -34,11 +30,67 @@ Hw.Srvc.InventoryHandler = (function(){
         }
     });
 
+    var $_equippedInventory = $('#equipped-inventory');
+    var _equippedItemsMap = {
+        head: null,
+        chest: null,
+        legs: null,
+        left: null,
+        right: null
+    };
+
+    var $_inventory = $('#inventory');
+    var _inventoryMap = [
+        null, null, null, null, null,
+        null, null, null, null, null,
+        null, null, null, null, null
+    ];
+
     var setupInventory = function (items) {
         console.log('Setting up the inventory with Items: ', items);
+
+        // $.each(items, function (idx, item) {
+        for (var i = 0; i < items.length; i++) {
+            console.log(items[i]);
+
+            if (items[i].getType() == 'weapon' && _equippedItemsMap.left === null) {
+                _equippedItemsMap.left = items[i];
+                continue;
+            }
+
+            _inventoryMap[i] = items[i];
+        }
+
+        _updateInventoryHtml();
+    };
+
+    var _updateInventoryHtml = function () {
+        $.each(_equippedItemsMap, function(slot, item){
+            if (item != null) {
+                $_equippedInventory.find("[data-slot='" + slot + "']").html(item.getItemHtml());
+            }
+        });
+
+        for (var i = 0; i < _inventoryMap.length; i++) {
+            if (null != _inventoryMap[i]) {
+                $_inventory.find("[data-slot='" + i + "']").html(
+                    _inventoryMap[i].getItemHtml()
+                );
+            }
+        }
+
+        _$invItem.draggable({
+            revert: 'invalid'
+        });
+    };
+
+    var getInventory = function () {
+        console.log(_equippedItemsMap);
+        console.log(_inventoryMap);
     };
 
     return {
-        setupInventory: setupInventory
+        setupInventory: setupInventory,
+        getInventory: getInventory
     }
 })();

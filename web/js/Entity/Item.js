@@ -70,6 +70,7 @@ Hw.Enty.Item = Hw.Enty.Item || (function(name, image, type, rarity, template, pr
         getName: getName,
         getImage: getImage,
         getType: getType,
-        getRarity: getRarity
+        getRarity: getRarity,
+        getItemHtml: getItemHtml
     }
 });
