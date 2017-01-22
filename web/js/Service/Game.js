@@ -48,7 +48,11 @@ Hw.Srvc.Game = Hw.Srvc.Game || (function(){
 
         Hw.Srvc.Spawner.trackMonstersOnTheField();
 
-        Hw.Srvc.LootGenerator.loadBaseItems();
+        Hw.Srvc.LootGenerator.loadBaseItems(function(){
+            Hw.Srvc.InventoryHandler.setupInventory(
+                Hw.Srvc.LootGenerator.getStartingGear()
+            );
+        });
 
         Hw.Srvc.Spawner.loadMonsters(function(){
             _initLevel(_currentLevelIdx);

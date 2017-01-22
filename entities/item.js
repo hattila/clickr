@@ -15,7 +15,7 @@ module.exports = (function () {
         },
         {
             id: 2,
-            name: 'Revolver',
+            name: 'Colt',
             type: 'weapon',
             image: 'image/items/weapons/colt_45.jpg',
             damage: 8

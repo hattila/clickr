@@ -103,10 +103,12 @@
 				<div id="inventory" class="inventory-grid">
 					<div class="inv-row">
 						<div class="inv-slot">
-							<div class="inv-item revolver"></div>
+							<div class="inv-item revolver normal"></div>
 						</div>
 						<div class="inv-slot"></div>
-						<div class="inv-slot"></div>
+						<div class="inv-slot">
+							<div class="inv-item revolver junk"></div>
+						</div>
 						<div class="inv-slot"></div>
 						<div class="inv-slot"></div>
 					</div>
@@ -126,7 +128,7 @@
 						<div class="inv-slot"></div>
 						<div class="inv-slot"></div>
 						<div class="inv-slot">
-							<div class="inv-item tommygun legendary"></div>
+							<div class="inv-item thomson legendary"></div>
 						</div>
 						<div class="inv-slot"></div>
 					</div>
@@ -153,6 +155,10 @@
 		<div class="name">{name}</div>
 		<div class="hit-box"></div>
 	</div>
+</script>
+
+<script id="item-template" type="text/template">
+	<div id=item-{id} class="inv-item {class_name} {rarity_name}" data-item="{item}"></div>
 </script>
 
 <script id="menu-mid-level" type="text/template">

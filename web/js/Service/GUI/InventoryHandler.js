@@ -7,6 +7,7 @@
  *  - different types of equipment slots?
  *  - Get Items
  *  - Remove Items
+ *  - load items to Inventory
  */
 
 Hw.Srvc.InventoryHandler = (function(){
@@ -33,7 +34,11 @@ Hw.Srvc.InventoryHandler = (function(){
         }
     });
 
-    return {
+    var setupInventory = function (items) {
+        console.log('Setting up the inventory with Items: ', items);
+    };
 
+    return {
+        setupInventory: setupInventory
     }
 })();

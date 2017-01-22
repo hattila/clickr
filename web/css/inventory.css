@@ -88,6 +88,17 @@ div.inventory-grid div.inv-row div.inv-slot div.inv-item {
 	border-color: rgba(220, 220, 220, 1);;
 	background-size: cover;
 }
+div.inventory-grid div.inv-row div.inv-slot div.inv-item.junk {
+	border-color: rgba(40, 40, 40, 1);
+	box-shadow: inset 1px 1px 0 #444,
+		inset -1px -1px 0 #444,
+		inset -1px -1px 20px rgba(40, 40, 40, 0.4),
+		inset 1px 1px 20px rgba(40, 40, 40, 0.4);
+	opacity: 0.6;
+}
+div.inventory-grid div.inv-row div.inv-slot div.inv-item.normal {
+	/*Normal items are the same as default*/
+}
 div.inventory-grid div.inv-row div.inv-slot div.inv-item.magical {
 	border-color: rgba(0, 150, 250, 1);
 	box-shadow: inset 1px 1px 0 #ddd,
@@ -114,4 +125,4 @@ div.inventory-grid div.inv-row div.inv-slot div.inv-item.legendary {
 div.inventory-grid div.inv-row div.inv-slot div.inv-item.revolver { background-image: url(../image/items/weapons/pistol.jpg); }
 div.inventory-grid div.inv-row div.inv-slot div.inv-item.colt { background-image: url(../image/items/weapons/colt_45.jpg); }
 div.inventory-grid div.inv-row div.inv-slot div.inv-item.shotgun { background-image: url(../image/items/weapons/shotgun.jpg); }
-div.inventory-grid div.inv-row div.inv-slot div.inv-item.tommygun { background-image: url(../image/items/weapons/tommy.jpg); }
+div.inventory-grid div.inv-row div.inv-slot div.inv-item.thomson { background-image: url(../image/items/weapons/tommy.jpg); }
