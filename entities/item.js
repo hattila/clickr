@@ -10,28 +10,28 @@ module.exports = (function () {
             id: 1,
             name: 'Revolver',
             type: 'weapon',
-            image: 'image/items/pistol.jpg',
+            image: 'image/items/weapons/pistol.jpg',
             damage: 5
         },
         {
             id: 2,
             name: 'Revolver',
             type: 'weapon',
-            image: 'image/items/colt_45.jpg',
+            image: 'image/items/weapons/colt_45.jpg',
             damage: 8
         },
         {
             id: 3,
             name: 'Shotgun',
             type: 'weapon',
-            image: 'image/items/shotgun.jpg',
+            image: 'image/items/weapons/shotgun.jpg',
             damage: 15
         },
         {
             id: 4,
             name: 'Thomson',
             type: 'weapon',
-            image: 'image/items/tommy.jpg',
+            image: 'image/items/weapons/tommy.jpg',
             damage: 22
         }
     ];

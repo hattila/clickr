@@ -17,14 +17,12 @@ Hw.Srvc.LootGenerator = (function(){
      */
     var _baseItems = [];
 
-    var loadBaseItems = function (callback) {
+    var loadBaseItems = function () {
         $.ajax({
             url: '/items',
             method: 'GET',
             success: function (data) {
                 _baseItems = data;
-
-                callback();
             },
             error: function () {
 
