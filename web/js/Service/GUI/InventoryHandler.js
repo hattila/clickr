@@ -12,11 +12,26 @@
 
 Hw.Srvc.InventoryHandler = (function(){
 
-    var _$invItem = $('.inv-item');
+    var _invItemClass = '.inv-item';
 
     $('.inv-slot').droppable({
         accept: function (draggable) {
-            return (draggable.hasClass('inv-item') && '' === $.trim($(this).html()));
+            if (-1 !== ['head', 'chest', 'legs', 'left', 'right'].indexOf($(this).data('slot'))) {
+
+                console.log($(draggable).data('item'));
+
+                if (-1 !== ['left', 'right'].indexOf($(this).data('slot')) && 'weapon' == $(draggable).data('item').type) {
+                    return true;
+                }
+
+                if (-1 !== ['head', 'chest', 'legs'].indexOf($(this).data('slot')) && 'armor' == $(draggable).data('item').type) {
+                    return true;
+                }
+
+                return false;
+            } else {
+                return (draggable.hasClass('inv-item') && '' === $.trim($(this).html()));
+            }
         },
         drop: function (event, ui) {
             console.log('an element has been dropped on me!', ui);
@@ -79,7 +94,7 @@ Hw.Srvc.InventoryHandler = (function(){
             }
         }
 
-        _$invItem.draggable({
+        $(_invItemClass).draggable({
             revert: 'invalid'
         });
     };

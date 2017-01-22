@@ -53,7 +53,7 @@ Hw.Enty.Item = Hw.Enty.Item || (function(name, image, type, rarity, template, pr
             .replace('{id}', _id)
             .replace(/{class_name}/g, _name.toLowerCase())
             .replace(/{rarity_name}/g, _getRarityName(_rarity))
-            .replace('{item}', this);
+            .replace('{item}', JSON.stringify(_properties));
 
         _template = $.parseHTML(_template);
 

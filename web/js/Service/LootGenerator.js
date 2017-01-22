@@ -52,8 +52,10 @@ Hw.Srvc.LootGenerator = (function(){
              * 45 % to normal
              * 20 % to junk
              */
-
+            rarity = 1;
         }
+
+        baseItem.rarity = rarity;
 
         var item = new Hw.Enty.Item(
             baseItem.name,
@@ -61,9 +63,7 @@ Hw.Srvc.LootGenerator = (function(){
             baseItem.type,
             rarity,
             _itemTmp,
-            {
-                damage: baseItem.damage
-            }
+            baseItem
         );
 
         return item;
