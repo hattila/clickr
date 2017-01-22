@@ -3,22 +3,24 @@
  *
  * Show an ingame menu
  *  - pause game?
- *  - inter level stats
+ *  - mid level stats
  */
 
 Hw.Srvc.IngameMenu = (function(){
 
     var _template = $('#ingame-menu');
 
-    // evenet listener to the ESC key ?
+    // event listener to the ESC key ?
 
     var open = function (menu) {
         menu = menu || {
                 title: 'Ingame Menu',
+                content: '',
                 actions: []
             };
 
         _template.children('.title').html(menu.title);
+        _template.children('.content').html(menu.content);
 
         if (menu.actions.length > 0) {
             var buttons = [];
@@ -34,7 +36,7 @@ Hw.Srvc.IngameMenu = (function(){
                 buttons.push(button);
             }
 
-            _template.children('.actions').html(buttons.join());
+            _template.children('.actions').html(buttons.join(''));
 
             for (i = 0; i < menu.actions.length; i++) {
                 var $btn = $(_template).children('.actions').children('.btn-' + i);

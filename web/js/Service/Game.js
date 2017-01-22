@@ -116,6 +116,12 @@ Hw.Srvc.Game = Hw.Srvc.Game || (function(){
     var _levelCompleted = function () {
         var menu = {
             title: 'Level Complete!',
+            content: $.parseHTML(
+                $('#menu-mid-level').html()
+                    .replace('{monsters_killed}', 'x')
+                    .replace(/{time_left}/g, 0)
+                    .replace(/{click_accuracy}/g, 0)
+            ),
             actions: [
                 {
                     title: 'Just a button',

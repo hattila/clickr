@@ -25,6 +25,7 @@
 
 		<div id="ingame-menu">
 			<div class="title">Ingame menu</div>
+			<div class="content"></div>
 			<div class="actions"></div>
 		</div>
 
@@ -152,6 +153,16 @@
 		<div class="name">{name}</div>
 		<div class="hit-box"></div>
 	</div>
+</script>
+
+<script id="menu-mid-level" type="text/template">
+	<p>Combat completed!</p>
+	<ul>
+		<li>Monsters killed: {monsters_killed}</li>
+		<li>Time left: {time_left}</li>
+		<li>Click accuracy: {click_accuracy}</li>
+		<li>Any other stats: ...</li>
+	</ul>
 </script>
 
 	<script src="/js/libs/jquery-2.2.2.min.js" type="text/javascript"></script>
