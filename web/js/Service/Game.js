@@ -48,6 +48,8 @@ Hw.Srvc.Game = Hw.Srvc.Game || (function(){
 
         Hw.Srvc.Spawner.trackMonstersOnTheField();
 
+        Hw.Srvc.LootGenerator.loadBaseItems();
+
         Hw.Srvc.Spawner.loadMonsters(function(){
             _initLevel(_currentLevelIdx);
         });

@@ -15,8 +15,10 @@ app.use(express.static('web'));
 // });
 
 var monsters = require('./routes/monsters');
+var items = require('./routes/items');
 
 app.use('/monsters', monsters);
+app.use('/items', items);
 
 app.listen(8080, function(){
     console.log('Running Express');
