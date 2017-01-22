@@ -1,12 +1,13 @@
 .monster {
 	position: absolute;
-	top: 10px;
-	left: 10px;
+	top: 0px;
+	left: 0px;
 	width: 100px;
 	height: 120px;
+	transform: translate(0, 0);
 
 	opacity: 1;
-	transition: opacity 0.2s, top 0.4s, left 0.4s ;
+	transition: opacity 0.2s, transform 0.4s;
 }
 .monster .health-bar-container {
 	position: relative;

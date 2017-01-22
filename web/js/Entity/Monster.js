@@ -56,7 +56,7 @@ Hw.Enty.Monster = (function(template, name, image, hp, damage) {
         _top = top;
         _left = left;
 
-        var style = 'top: ' + _top + 'px; left: ' + _left + 'px;';
+        var style = 'transform: translate(' + left + 'px, ' + top + 'px);';
         $(_template).attr('style', style);
     };
 
