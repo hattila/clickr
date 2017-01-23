@@ -18,8 +18,6 @@ Hw.Srvc.InventoryHandler = (function(){
         accept: function (draggable) {
             if (-1 !== ['head', 'chest', 'legs', 'left', 'right'].indexOf($(this).data('slot'))) {
 
-                console.log($(draggable).data('item'));
-
                 if (-1 !== ['left', 'right'].indexOf($(this).data('slot')) && 'weapon' == $(draggable).data('item').type) {
                     return true;
                 }
@@ -34,14 +32,12 @@ Hw.Srvc.InventoryHandler = (function(){
             }
         },
         drop: function (event, ui) {
-            console.log('an element has been dropped on me!', ui);
             ui.draggable
                 .css({
                     top: 0,
                     left: 0
                 })
                 .appendTo($(this));
-
         }
     });
 
@@ -95,7 +91,14 @@ Hw.Srvc.InventoryHandler = (function(){
         }
 
         $(_invItemClass).draggable({
-            revert: 'invalid'
+            revert: function (isValid) {
+                if (isValid) {
+                    return false;
+                } else {
+                    Materialize.toast('I can\'t put that there.', 1500);
+                    return true;
+                }
+            }
         });
     };
 
