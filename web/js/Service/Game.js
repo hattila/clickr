@@ -57,7 +57,7 @@ Hw.Service.Game = (function(){
         });
 
         Hw.Service.Spawner.loadMonsters(function(){
-            // _initLevel(_currentLevelIdx);
+            _initLevel(_currentLevelIdx);
         });
     };
 

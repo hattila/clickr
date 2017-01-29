@@ -8,8 +8,10 @@ Hw.Entity.Player = (function(){
      * @private
      */
     var _damage = 1;
-    var _stamina, _maxStamina = 100;
-    var _sanity, _maxSanity = 100;
+    var _stamina = 100;
+    var _maxStamina = 100;
+    var _sanity = 100;
+    var _maxSanity = 100;
     var _armor = 0;
     var _level = 1;
     var _xp = 0;
@@ -160,11 +162,11 @@ Hw.Entity.Player = (function(){
         });
     };
 
+    var applyItemBonuses = function (items) {
+        console.log('Should apply equipped item effects');
+    };
+
     _setupEventListeners();
-
-    function _applyItemBonuses(items) {
-
-    }
 
     return {
         getDamage: getDamage,
@@ -172,6 +174,7 @@ Hw.Entity.Player = (function(){
         recDamage: recDamage,
         recHealing: recHealing,
         recSanityDamage: recSanityDamage,
-        recSanityHealing: recSanityHealing
+        recSanityHealing: recSanityHealing,
+        applyItemBonuses: applyItemBonuses
     }
 });

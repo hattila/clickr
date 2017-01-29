@@ -38,9 +38,20 @@ Hw.Service.InventoryHandler = (function(){
                 })
                 .appendTo($(this));
 
+            /**
+             * TODO find the best way to manage items in the memory map and in the DOM as well.
+             * When an Item is physically replaced by a drag-drop event, the placement in the DOM updates,
+             * but the placement in the equipment and inventory maps are not.
+             */
+
             if ($(this).hasClass('equip-slot')) {
-                console.log('So its equipped');
+                // _equippedItemsMap[$(this).data('slot')] =
+            } else {
+
             }
+
+            Player.applyItemBonuses(_equippedItemsMap);
+
         }
     });
 
