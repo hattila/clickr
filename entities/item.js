@@ -33,6 +33,20 @@ module.exports = (function () {
             type: 'weapon',
             image: 'image/items/weapons/tommy.jpg',
             damage: 22
+        },
+        {
+            id: 5,
+            name: 'TrenchCoat',
+            type: 'armor',
+            image: 'image/items/armor/trench_coat.jpg',
+            armor: 3
+        },
+        {
+            id: 5,
+            name: 'LeatherHat',
+            type: 'armor',
+            image: 'image/items/armor/leather_hat.jpg',
+            armor: 1
         }
     ];
 
