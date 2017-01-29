@@ -117,9 +117,9 @@ Hw.Service.LootGenerator = (function () {
 
         return [
             {
-                head: null,
-                chest: generateItem(5, 0),
-                legs: null,
+                hat: null,
+                armor: generateItem(5, 0),
+                trinket: null,
                 left: null,
                 right: generateItem(1, 1)
             },

@@ -21,7 +21,7 @@ Hw.Service.InventoryHandler = (function(){
                     return true;
                 }
 
-                if (-1 !== ['head', 'chest', 'trinket'].indexOf($(this).data('slot')) && 'armor' == $(draggable).data('item').type) {
+                if ($(this).data('slot') == $(draggable).data('item').type) {
                     return true;
                 }
 
@@ -46,9 +46,9 @@ Hw.Service.InventoryHandler = (function(){
 
     var $_equippedInventory = $('#equipped-inventory');
     var _equippedItemsMap = {
-        head: null,
-        chest: null,
-        legs: null,
+        hat: null,
+        armor: null,
+        trinket: null,
         left: null,
         right: null
     };
