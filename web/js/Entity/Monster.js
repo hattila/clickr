@@ -3,7 +3,7 @@
  *
  * @type {Function}
  */
-Hw.Enty.Monster = (function(template, name, image, hp, damage) {
+Hw.Entity.Monster = (function(template, name, image, hp, damage) {
 
     /**
      * Properties

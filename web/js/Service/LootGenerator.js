@@ -57,7 +57,7 @@ Hw.Service.LootGenerator = (function(){
 
         baseItem.rarity = rarity;
 
-        var item = new Hw.Enty.Item(
+        var item = new Hw.Entity.Item(
             baseItem.name,
             baseItem.image,
             baseItem.type,

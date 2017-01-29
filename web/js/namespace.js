@@ -4,10 +4,8 @@
 
 var Hw = {};
 
-Hw.Controller = {};   // Hw.Controller = {};
-Hw.Service = {};   // Hw.Service = {};
-Hw.Wdgt = {};   // Hw.Widget = {};
-Hw.Test = {};   // Hw.Test = {};
-Hw.Litr = {};   // Hw.Literals = {};
-
-Hw.Enty = {};   // Hw.Entity = {};
+Hw.Controller = {};
+Hw.Service = {};
+Hw.Widget = {};
+Hw.Entity = {};
+Hw.Test = {};

@@ -2,7 +2,7 @@
  *  AppController
  */
 
-var Player = new Hw.Enty.Player();
+var Player = new Hw.Entity.Player();
 
 $(document).ready(function(){
 

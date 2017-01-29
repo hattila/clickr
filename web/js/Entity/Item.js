@@ -3,7 +3,7 @@
  *
  * Weapons, tomes, armor etc.
  */
-Hw.Enty.Item = Hw.Enty.Item || (function(name, image, type, rarity, template, properties){
+Hw.Entity.Item = (function(name, image, type, rarity, template, properties){
 
     /**
      * Properties

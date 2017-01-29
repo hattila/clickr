@@ -133,7 +133,7 @@ Hw.Service.Spawner = (function(){
             randomMonster.hp[Math.floor(Math.random() * (randomMonster.hp.length))] :
             randomMonster.hp;
 
-        return new Hw.Enty.Monster(
+        return new Hw.Entity.Monster(
             _monsterTmp,
             randomMonster.name,
             randomMonster.image,

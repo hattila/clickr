@@ -1,5 +1,5 @@
 
-Hw.Enty.Player = Hw.Enty.Player || (function(){
+Hw.Entity.Player = (function(){
 
     /**
      * BaseDamage
