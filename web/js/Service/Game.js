@@ -1,5 +1,9 @@
-
-Hw.Srvc.Game = Hw.Srvc.Game || (function(){
+/**
+ * Control the Game flow
+ *
+ * @type {{init}}
+ */
+Hw.Service.Game = (function(){
 
     /**
      * Properties
@@ -43,18 +47,18 @@ Hw.Srvc.Game = Hw.Srvc.Game || (function(){
 
     var init = function ()
     {
-        Hw.Srvc.MonsterMover.init();
-        Hw.Srvc.MonsterDamageDealer.init();
+        Hw.Service.MonsterMover.init();
+        Hw.Service.MonsterDamageDealer.init();
 
-        Hw.Srvc.Spawner.trackMonstersOnTheField();
+        Hw.Service.Spawner.trackMonstersOnTheField();
 
-        Hw.Srvc.LootGenerator.loadBaseItems(function(){
-            Hw.Srvc.InventoryHandler.setupInventory(
-                Hw.Srvc.LootGenerator.getStartingGear()
+        Hw.Service.LootGenerator.loadBaseItems(function(){
+            Hw.Service.InventoryHandler.setupInventory(
+                Hw.Service.LootGenerator.getStartingGear()
             );
         });
 
-        Hw.Srvc.Spawner.loadMonsters(function(){
+        Hw.Service.Spawner.loadMonsters(function(){
             _initLevel(_currentLevelIdx);
         });
     };
@@ -72,15 +76,15 @@ Hw.Srvc.Game = Hw.Srvc.Game || (function(){
             /**
              * Start Timer
              */
-            Hw.Srvc.Timer.reset(level.timer * 1000);
+            Hw.Service.Timer.reset(level.timer * 1000);
 
-            Hw.Srvc.Spawner.spawnMonstersToAField(_$gameField, level.monstersPerWave, level.delayInWave);
+            Hw.Service.Spawner.spawnMonstersToAField(_$gameField, level.monstersPerWave, level.delayInWave);
             var wave = 2;
 
             var levelWaveInterval = setInterval(function () {
 
                 if (wave <= waves) {
-                    Hw.Srvc.Spawner.spawnMonstersToAField(_$gameField, level.monstersPerWave, level.delayInWave);
+                    Hw.Service.Spawner.spawnMonstersToAField(_$gameField, level.monstersPerWave, level.delayInWave);
                     wave++;
                 } else {
                     console.log('Levels monsters have spawned. Clearing wave interval.');
@@ -105,13 +109,13 @@ Hw.Srvc.Game = Hw.Srvc.Game || (function(){
             });
 
             $.subscribe('/player/dies', function () {
-                Hw.Srvc.Timer.pause();
+                Hw.Service.Timer.pause();
                 clearInterval(levelWaveInterval);
                 _levelFailed();
             });
 
             $.subscribe('/player/goesInsane', function () {
-                Hw.Srvc.Timer.pause();
+                Hw.Service.Timer.pause();
                 clearInterval(levelWaveInterval);
                 _levelFailed();
             });
@@ -138,14 +142,14 @@ Hw.Srvc.Game = Hw.Srvc.Game || (function(){
                 {
                     title: 'Next level',
                     action: function () {
-                        Hw.Srvc.IngameMenu.close();
+                        Hw.Service.IngameMenu.close();
                         _initLevel(_currentLevelIdx);
                     }
                 }
             ]
         };
 
-        Hw.Srvc.Timer.pause();
+        Hw.Service.Timer.pause();
 
         if (_currentLevelIdx + 1 == _levels.length) {
             $('#ultimate-message')
@@ -160,7 +164,7 @@ Hw.Srvc.Game = Hw.Srvc.Game || (function(){
 
         _currentLevelIdx++;
 
-        Hw.Srvc.IngameMenu.open(menu);
+        Hw.Service.IngameMenu.open(menu);
     };
 
     var _levelFailed = function () {
@@ -172,7 +176,7 @@ Hw.Srvc.Game = Hw.Srvc.Game || (function(){
                 {
                     title: 'Restart level',
                     action: function () {
-                        Hw.Srvc.IngameMenu.close();
+                        Hw.Service.IngameMenu.close();
                         _initLevel(_currentLevelIdx);
                     }
                 }
@@ -185,8 +189,8 @@ Hw.Srvc.Game = Hw.Srvc.Game || (function(){
             .addClass('bad')
             .fadeIn(200);
 
-        Hw.Srvc.Spawner.wipeField();
-        Hw.Srvc.IngameMenu.open(menu);
+        Hw.Service.Spawner.wipeField();
+        Hw.Service.IngameMenu.open(menu);
     };
 
     return {

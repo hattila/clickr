@@ -1,5 +1,5 @@
 
-Hw.Srvc.Timer = (function(){
+Hw.Service.Timer = (function(){
 
     /**
      * Number of milliseconds to count down

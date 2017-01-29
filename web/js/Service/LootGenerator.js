@@ -7,7 +7,7 @@
  *  - on level completion?
  */
 
-Hw.Srvc.LootGenerator = (function(){
+Hw.Service.LootGenerator = (function(){
 
     /**
      * Container for the Item entities. See:

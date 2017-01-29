@@ -10,7 +10,7 @@
  *  - load items to Inventory
  */
 
-Hw.Srvc.InventoryHandler = (function(){
+Hw.Service.InventoryHandler = (function(){
 
     var _invItemClass = '.inv-item';
 

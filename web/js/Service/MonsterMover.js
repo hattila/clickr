@@ -2,7 +2,7 @@
  * Handles Monster movement
  * Manage movement intervals
  */
-Hw.Srvc.MonsterMover = (function(){
+Hw.Service.MonsterMover = (function(){
 
     var _boardWidth = 600;
     var _boardHeight = 600;

@@ -2,7 +2,7 @@
  * Handles the Monsters damage dealing
  * Manage damage intervals
  */
-Hw.Srvc.MonsterDamageDealer = (function(){
+Hw.Service.MonsterDamageDealer = (function(){
 
     var _damageIntervals = [];
 

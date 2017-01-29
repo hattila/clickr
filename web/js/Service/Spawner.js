@@ -1,5 +1,7 @@
-
-Hw.Srvc.Spawner = Hw.Srvc.Spawner || (function(){
+/**
+ * Create Monsters
+ */
+Hw.Service.Spawner = (function(){
 
     /**
      * Container for the Monster entities. See:

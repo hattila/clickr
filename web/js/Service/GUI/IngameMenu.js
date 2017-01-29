@@ -6,7 +6,7 @@
  *  - mid level stats
  */
 
-Hw.Srvc.IngameMenu = (function(){
+Hw.Service.IngameMenu = (function(){
 
     var _template = $('#ingame-menu');
 

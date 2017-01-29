@@ -1,5 +1,5 @@
 
-Hw.Srvc.MonsterIdProvider = (function(){
+Hw.Service.MonsterIdProvider = (function(){
 
     var _nextId = 0;
 
