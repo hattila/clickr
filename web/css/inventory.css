@@ -46,14 +46,14 @@ div.inventory-grid div.inv-row div.inv-slot:before {
 /**
  * Equippable items background
  */
-div.inventory-grid div.inv-row div.inv-slot.head { }
-div.inventory-grid div.inv-row div.inv-slot.head:before {
+div.inventory-grid div.inv-row div.inv-slot.hat { }
+div.inventory-grid div.inv-row div.inv-slot.hat:before {
 	background-image: url(../image/gui/hat.png);
 	background-size: 46px 46px;
 }
 
-div.inventory-grid div.inv-row div.inv-slot.chest { }
-div.inventory-grid div.inv-row div.inv-slot.chest:before {
+div.inventory-grid div.inv-row div.inv-slot.armor { }
+div.inventory-grid div.inv-row div.inv-slot.armor:before {
 	background-image: url(../image/gui/vest.png);
 	background-size: 36px 34px;
 }
