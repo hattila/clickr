@@ -52,15 +52,15 @@ module.exports = (function () {
             id: 6,
             name: 'Trinket1',
             type: 'trinket',
-            image: 'image/items/trinkets/black_amulet.jpg',
-            armor: 1
+            image: 'image/items/trinkets/bronze_amulet.jpg',
+            stamina: 10
         },
         {
             id: 7,
             name: 'Trinket2',
             type: 'trinket',
             image: 'image/items/trinkets/blue_amulet.jpg',
-            damage: 2
+            sanity: 10
         }
     ];
 

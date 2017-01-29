@@ -8,16 +8,25 @@ Hw.Entity.Player = (function(){
      * @private
      */
     var _damage = 1;
-    var _stamina = 100;
-    var _sanity = 100;
+    var _stamina, _maxStamina = 100;
+    var _sanity, _maxSanity = 100;
+    var _armor = 0;
     var _level = 1;
     var _xp = 0;
+
+    var _bonus = {
+        damage: 0,
+        stamina: 0,
+        sanity: 0,
+        armor: 0
+    };
 
     var _statsContainerId = '#stats';
     var _$stats = {
         damage: $(_statsContainerId + ' .damage'),
         stamina: $(_statsContainerId + ' .stamina'),
         sanity: $(_statsContainerId + ' .sanity'),
+        armor: $(_statsContainerId + ' .armor'),
         level: $(_statsContainerId + ' .level'),
         xp: $(_statsContainerId + ' .xp')
     };
@@ -42,6 +51,11 @@ Hw.Entity.Player = (function(){
 
         return _stamina;
     };
+    var recHealing = function (heal) {
+        _stamina = heal < _maxStamina - _stamina ? _stamina + heal : _maxStamina;
+        _updateStamina();
+        return _stamina;
+    };
 
     /**
      * Player receives Sanity damage
@@ -57,6 +71,11 @@ Hw.Entity.Player = (function(){
             $.publish('/player/goesInsane');
         }
 
+        return _sanity;
+    };
+    var recSanityHealing = function (heal) {
+        _sanity = heal < _maxSanity - _sanity ? _sanity + heal : _maxSanity;
+        _updateSanity();
         return _sanity;
     };
 
@@ -122,6 +141,10 @@ Hw.Entity.Player = (function(){
         _$stats.sanity.text(_sanity);
     };
 
+    var _updateArmor = function () {
+        _$stats.armor.text(_armor);
+    };
+
     var _updateLevel = function () {
         _$stats.level.text(_level);
     };
@@ -139,10 +162,16 @@ Hw.Entity.Player = (function(){
 
     _setupEventListeners();
 
+    function _applyItemBonuses(items) {
+
+    }
+
     return {
         getDamage: getDamage,
 
         recDamage: recDamage,
-        recSanityDamage: recSanityDamage
+        recHealing: recHealing,
+        recSanityDamage: recSanityDamage,
+        recSanityHealing: recSanityHealing
     }
 });
