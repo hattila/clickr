@@ -67,11 +67,11 @@ Hw.Service.LootGenerator = (function () {
      */
     var generateItem = function (id, rarity) {
         id = id || false;
-        rarity = rarity || false;
+        rarity = undefined !== rarity ? rarity : undefined;
 
         var baseItem = id ? _getBaseItemById(id) : _getRandomBaseItem();
 
-        if (!rarity) {
+        if (undefined === rarity) {
             /**
              * 20 % to junk
              * 45 % to normal
@@ -116,7 +116,7 @@ Hw.Service.LootGenerator = (function () {
         return [
             {
                 head: null,
-                chest: null,
+                chest: generateItem(5, 0),
                 legs: null,
                 left: null,
                 right: generateItem(1, 1)

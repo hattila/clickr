@@ -57,6 +57,8 @@ Hw.Entity.Item = (function(name, image, type, rarity, template, properties){
 
         _template = $.parseHTML(_template);
 
+        $(_template).attr('style', 'background-image: url(\'' + getImage() + '\');');
+
         return _template;
     };
 
