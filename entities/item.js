@@ -11,56 +11,72 @@ module.exports = (function () {
             name: 'Revolver',
             type: 'weapon',
             image: 'image/items/weapons/pistol.jpg',
-            damage: 5
+            effects: {
+                damage: 5
+            }
         },
         {
             id: 2,
             name: 'Colt',
             type: 'weapon',
             image: 'image/items/weapons/colt_45.jpg',
-            damage: 8
+            effects: {
+                damage: 8
+            }
         },
         {
             id: 3,
             name: 'Shotgun',
             type: 'weapon',
             image: 'image/items/weapons/shotgun.jpg',
-            damage: 15
+            effects: {
+                damage: 15
+            }
         },
         {
             id: 4,
             name: 'Thomson',
             type: 'weapon',
             image: 'image/items/weapons/tommy.jpg',
-            damage: 22
+            effects: {
+                damage: 22
+            }
         },
         {
             id: 5,
             name: 'TrenchCoat',
             type: 'armor',
             image: 'image/items/armor/trench_coat.jpg',
-            armor: 3
+            effects: {
+                armor: 3
+            }
         },
         {
             id: 5,
             name: 'LeatherHat',
             type: 'hat',
             image: 'image/items/armor/leather_hat.jpg',
-            armor: 1
+            effects: {
+                armor: 1
+            }
         },
         {
             id: 6,
             name: 'Trinket1',
             type: 'trinket',
             image: 'image/items/trinkets/bronze_amulet.jpg',
-            stamina: 10
+            effects: {
+                stamina: 10
+            }
         },
         {
             id: 7,
             name: 'Trinket2',
             type: 'trinket',
             image: 'image/items/trinkets/blue_amulet.jpg',
-            sanity: 10
+            effects: {
+                sanity: 10
+            }
         }
     ];
 

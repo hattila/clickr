@@ -99,7 +99,7 @@ Hw.Service.LootGenerator = (function () {
             baseItem.type,
             rarity,
             _itemTmp,
-            baseItem
+            baseItem.effects // TODO: refine concrete generated effects based on the BaseItems stat intervals
         );
 
         return item;

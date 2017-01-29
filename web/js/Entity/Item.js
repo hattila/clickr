@@ -3,7 +3,7 @@
  *
  * Weapons, tomes, armor etc.
  */
-Hw.Entity.Item = (function(name, image, type, rarity, template, properties){
+Hw.Entity.Item = (function(name, image, type, rarity, template, effects){
 
     /**
      * Properties
@@ -14,7 +14,7 @@ Hw.Entity.Item = (function(name, image, type, rarity, template, properties){
     var _type;
     var _rarity;
     var _template;
-    var _properties;
+    var _effects;
 
     var _rarityNames = [
         'junk',
@@ -30,7 +30,7 @@ Hw.Entity.Item = (function(name, image, type, rarity, template, properties){
     _type = type;
     _rarity = rarity;
     _template = template;
-    _properties = properties;
+    _effects = effects;
 
     var getId = function () {
         return _id;
@@ -53,7 +53,12 @@ Hw.Entity.Item = (function(name, image, type, rarity, template, properties){
             .replace('{id}', _id)
             .replace(/{class_name}/g, _name.toLowerCase())
             .replace(/{rarity_name}/g, _getRarityName(_rarity))
-            .replace('{item}', JSON.stringify(_properties));
+            .replace('{item}', JSON.stringify({
+                id: _id,
+                type: _type,
+                rarity: _rarity,
+                effects: _effects
+            }));
 
         _template = $.parseHTML(_template);
 
