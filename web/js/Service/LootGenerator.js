@@ -19,6 +19,33 @@ Hw.Service.LootGenerator = (function () {
     var _baseItems = [];
     var _startingGear = [];
     var _itemTmp = $('#item-template').html();
+    var _rarities = [
+        {
+            name: 'junk',
+            chance: 20,
+            extraProperties: 0
+        },
+        {
+            name: 'normal',
+            chance: 45,
+            extraProperties: 0
+        },
+        {
+            name: 'magical',
+            chance: 20,
+            extraProperties: 1
+        },
+        {
+            name: 'rare',
+            chance: 10,
+            extraProperties: 2
+        },
+        {
+            name: 'legendary',
+            chance: 5,
+            extraProperties: 3
+        }
+    ];
 
     var loadBaseItems = function (callback) {
         $.ajax({
@@ -46,13 +73,22 @@ Hw.Service.LootGenerator = (function () {
 
         if (!rarity) {
             /**
-             *  5 % to legendary
-             * 10 % to rare
-             * 20 % to magical
-             * 45 % to normal
              * 20 % to junk
+             * 45 % to normal
+             * 20 % to magical
+             * 10 % to rare
+             *  5 % to legendary
              */
-            rarity = 1;
+            var proc = Math.floor(Math.random() * 101);
+
+            var base = 0;
+            $.each(_rarities, function (idx, e) {
+                base += e.chance;
+                if (proc < base) {
+                    rarity = idx;
+                    return false; // break
+                }
+            });
         }
 
         baseItem.rarity = rarity;
@@ -83,9 +119,11 @@ Hw.Service.LootGenerator = (function () {
                 chest: null,
                 legs: null,
                 left: null,
-                right: generateItem(1)
+                right: generateItem(1, 1)
             },
-            []
+            [
+                null
+            ]
         ];
     };
 
