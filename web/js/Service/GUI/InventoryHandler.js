@@ -57,19 +57,24 @@ Hw.Service.InventoryHandler = (function(){
         null, null, null, null, null
     ];
 
+    /**
+     * Setup the Players inventory based on a saved snapshot
+     *
+     * @param {{Array}} items
+     *   items[0] => {equipped items}
+     *   items[1] => [rest of the inventory]
+     */
     var setupInventory = function (items) {
         console.log('Setting up the inventory with Items: ', items);
 
-        // $.each(items, function (idx, item) {
-        for (var i = 0; i < items.length; i++) {
-            console.log(items[i]);
-
-            if (items[i].getType() == 'weapon' && _equippedItemsMap.left === null) {
-                _equippedItemsMap.left = items[i];
-                continue;
+        $.each(items[0], function (slot, item) {
+            if (_equippedItemsMap.hasOwnProperty(slot)) {
+                _equippedItemsMap[slot] = item;
             }
+        });
 
-            _inventoryMap[i] = items[i];
+        for (var i = 0; i < _inventoryMap.length; i++) {
+            _inventoryMap[i] = items[1][i];
         }
 
         _updateInventoryHtml();

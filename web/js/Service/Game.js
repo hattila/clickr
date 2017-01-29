@@ -53,9 +53,7 @@ Hw.Service.Game = (function(){
         Hw.Service.Spawner.trackMonstersOnTheField();
 
         Hw.Service.LootGenerator.loadBaseItems(function(){
-            Hw.Service.InventoryHandler.setupInventory(
-                Hw.Service.LootGenerator.getStartingGear()
-            );
+            Hw.Service.InventoryHandler.setupInventory(Hw.Service.LootGenerator.getStartingGear());
         });
 
         Hw.Service.Spawner.loadMonsters(function(){

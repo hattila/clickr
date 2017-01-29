@@ -7,7 +7,7 @@
  *  - on level completion?
  */
 
-Hw.Service.LootGenerator = (function(){
+Hw.Service.LootGenerator = (function () {
 
     /**
      * Container for the Item entities. See:
@@ -78,7 +78,14 @@ Hw.Service.LootGenerator = (function(){
         // TODO: any logic to determine starting items
 
         return [
-            generateItem(1)
+            {
+                head: null,
+                chest: null,
+                legs: null,
+                left: null,
+                right: generateItem(1)
+            },
+            []
         ];
     };
 
