@@ -21,7 +21,7 @@ Hw.Service.InventoryHandler = (function(){
                     return true;
                 }
 
-                if (-1 !== ['head', 'chest', 'legs'].indexOf($(this).data('slot')) && 'armor' == $(draggable).data('item').type) {
+                if (-1 !== ['head', 'chest', 'trinket'].indexOf($(this).data('slot')) && 'armor' == $(draggable).data('item').type) {
                     return true;
                 }
 

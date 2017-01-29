@@ -58,9 +58,9 @@ div.inventory-grid div.inv-row div.inv-slot.chest:before {
 	background-size: 36px 34px;
 }
 
-div.inventory-grid div.inv-row div.inv-slot.legs { }
-div.inventory-grid div.inv-row div.inv-slot.legs:before {
-	background-image: url(../image/gui/pants.png);
+div.inventory-grid div.inv-row div.inv-slot.trinket { }
+div.inventory-grid div.inv-row div.inv-slot.trinket:before {
+	background-image: url(../image/gui/trinket.png);
 }
 
 div.inventory-grid div.inv-row div.inv-slot.hand { }
