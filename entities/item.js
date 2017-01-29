@@ -44,9 +44,23 @@ module.exports = (function () {
         {
             id: 5,
             name: 'LeatherHat',
-            type: 'armor',
+            type: 'hat',
             image: 'image/items/armor/leather_hat.jpg',
             armor: 1
+        },
+        {
+            id: 6,
+            name: 'Trinket1',
+            type: 'trinket',
+            image: 'image/items/trinkets/black_amulet.jpg',
+            armor: 1
+        },
+        {
+            id: 7,
+            name: 'Trinket2',
+            type: 'trinket',
+            image: 'image/items/trinkets/blue_amulet.jpg',
+            damage: 2
         }
     ];
 
