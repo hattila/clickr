@@ -109,6 +109,8 @@ Hw.Service.LootGenerator = (function () {
      * Generate Starting Gear
      *  - Could be different each time
      *  - Sometimes get better stuff?
+     *
+     * @returns {{Array}} InventoryMap
      */
     var getStartingGear = function () {
         // TODO: any logic to determine starting items

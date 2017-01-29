@@ -16,8 +16,7 @@ Hw.Service.InventoryHandler = (function(){
 
     $('.inv-slot').droppable({
         accept: function (draggable) {
-            if (-1 !== ['head', 'chest', 'legs', 'left', 'right'].indexOf($(this).data('slot'))) {
-
+            if ($(this).hasClass('equip-slot')) {
                 if (-1 !== ['left', 'right'].indexOf($(this).data('slot')) && 'weapon' == $(draggable).data('item').type) {
                     return true;
                 }
@@ -38,6 +37,10 @@ Hw.Service.InventoryHandler = (function(){
                     left: 0
                 })
                 .appendTo($(this));
+
+            if ($(this).hasClass('equip-slot')) {
+                console.log('So its equipped');
+            }
         }
     });
 
