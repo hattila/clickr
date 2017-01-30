@@ -8,7 +8,7 @@ Hw.Entity.Monster = (function(template, name, image, hp, damage) {
     /**
      * Properties
      */
-    var _id = Hw.Service.MonsterIdProvider.getNewId();
+    var _id = Hw.Service.IdProvider.monster.getNewId();
     var _hp, _maxHp;
     var _name;
     var _image;
