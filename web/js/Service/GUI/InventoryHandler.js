@@ -117,7 +117,8 @@ Hw.Service.InventoryHandler = (function(){
                     Materialize.toast('I can\'t put that there.', 1500);
                     return true;
                 }
-            }
+            },
+            revertDuration: 100
         });
     };
 
