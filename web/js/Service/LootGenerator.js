@@ -93,16 +93,14 @@ Hw.Service.LootGenerator = (function () {
 
         baseItem.rarity = rarity;
 
-        var item = new Hw.Entity.Item(
+        return new Hw.Entity.Item(
             baseItem.name,
             baseItem.image,
             baseItem.type,
             rarity,
             _itemTmp,
-            baseItem.effects // TODO: refine concrete generated effects based on the BaseItems stat intervals
+            baseItem.effects // TODO: refine concrete generated effects based on the BaseItem's stat intervals
         );
-
-        return item;
     };
 
     /**
@@ -115,18 +113,15 @@ Hw.Service.LootGenerator = (function () {
     var getStartingGear = function () {
         // TODO: any logic to determine starting items
 
-        return [
-            {
-                hat: null,
-                armor: generateItem(5, 0),
-                trinket: null,
-                left: null,
-                right: generateItem(1, 1)
-            },
-            [
-                null
-            ]
-        ];
+        return {
+            hat: null,
+            armor: generateItem(5, 0),
+            trinket: null,
+            left: null,
+            right: generateItem(1, 1),
+            0: null,
+            1: generateItem()
+        };
     };
 
     var _getBaseItemById = function (id) {

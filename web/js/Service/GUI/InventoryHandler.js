@@ -56,20 +56,19 @@ Hw.Service.InventoryHandler = (function(){
     });
 
     var $_equippedInventory = $('#equipped-inventory');
-    var _equippedItemsMap = {
-        hat: null,
-        armor: null,
-        trinket: null,
-        left: null,
-        right: null
-    };
-
     var $_inventory = $('#inventory');
-    var _inventoryMap = [
-        null, null, null, null, null,
-        null, null, null, null, null,
-        null, null, null, null, null
-    ];
+    var _slotNames = ['hat', 'armor', 'trinket', 'left', 'right'];
+    var _inventoryMap =
+        {
+            hat: null,
+            armor: null,
+            trinket: null,
+            left: null,
+            right: null,
+             0: null,  1: null,  2: null,  3: null,  4: null,
+             5: null,  6: null,  7: null,  8: null,  9: null,
+            10: null, 11: null, 12: null, 13: null, 14: null
+        };
 
     /**
      * Setup the Players inventory based on a saved snapshot
@@ -81,33 +80,31 @@ Hw.Service.InventoryHandler = (function(){
     var setupInventory = function (items) {
         console.log('Setting up the inventory with Items: ', items);
 
-        $.each(items[0], function (slot, item) {
-            if (_equippedItemsMap.hasOwnProperty(slot)) {
-                _equippedItemsMap[slot] = item;
+        $.each(items, function (slot, item) {
+            if (_inventoryMap.hasOwnProperty(slot)) {
+                _inventoryMap[slot] = item;
             }
         });
-
-        for (var i = 0; i < _inventoryMap.length; i++) {
-            _inventoryMap[i] = items[1][i];
-        }
 
         _updateInventoryHtml();
     };
 
     var _updateInventoryHtml = function () {
-        $.each(_equippedItemsMap, function(slot, item){
+        $.each(_inventoryMap, function(slot, item){
+            var inventoryToPut = $_inventory;
+            if (-1 !== _slotNames.indexOf(slot)) {
+                inventoryToPut = $_equippedInventory;
+            }
+
+            // $_equippedInventory.find("[data-slot='" + slot + "']").html(item.getItemHtml());
+            // $_inventory.find("[data-slot='" + slot + "']").html(item.getItemHtml());
+
             if (item != null) {
-                $_equippedInventory.find("[data-slot='" + slot + "']").html(item.getItemHtml());
+                inventoryToPut.find("[data-slot='" + slot + "']").html(item.getItemHtml());
+            } else {
+                inventoryToPut.find("[data-slot='" + slot + "']").html('');
             }
         });
-
-        for (var i = 0; i < _inventoryMap.length; i++) {
-            if (null != _inventoryMap[i]) {
-                $_inventory.find("[data-slot='" + i + "']").html(
-                    _inventoryMap[i].getItemHtml()
-                );
-            }
-        }
 
         $(_invItemClass).draggable({
             revert: function (isValid) {
@@ -123,7 +120,7 @@ Hw.Service.InventoryHandler = (function(){
     };
 
     var getInventory = function () {
-        console.log(_equippedItemsMap);
+        // console.log(_equippedItemsMap);
         console.log(_inventoryMap);
     };
 

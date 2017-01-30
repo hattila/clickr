@@ -47,6 +47,9 @@ Hw.Entity.Item = (function(name, image, type, rarity, template, effects){
     var getRarity = function () {
         return _rarity;
     };
+    var getEffects = function () {
+        return _effects;
+    };
 
     var getItemHtml = function () {
         _template = _template
@@ -78,6 +81,7 @@ Hw.Entity.Item = (function(name, image, type, rarity, template, effects){
         getImage: getImage,
         getType: getType,
         getRarity: getRarity,
+        getEffects: getEffects,
         getItemHtml: getItemHtml
     }
 });
