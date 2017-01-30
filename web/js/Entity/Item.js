@@ -8,7 +8,7 @@ Hw.Entity.Item = (function(name, image, type, rarity, template, effects){
     /**
      * Properties
      */
-    var _id = Math.floor(Math.random() * 101);
+    var _id = Hw.Service.IdProvider.item.getNewId();
     var _name;
     var _image;
     var _type;
