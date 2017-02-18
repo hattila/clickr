@@ -155,15 +155,19 @@ Hw.Entity.Player = (function(){
         _$stats.xp.text(_xp);
     };
 
+    var _applyItemBonuses = function (items) {
+        console.log('Should apply equipped item effects');
+    };
+
     var _setupEventListeners = function () {
         // TODO: get a Monster Entity and get/calc the xp given by it.
         $.subscribe('/monster/dies', function (e, monsterId) {
             _awardXp();
         });
-    };
 
-    var applyItemBonuses = function (items) {
-        console.log('Should apply equipped item effects');
+        $.subscribe('/inventory/equippedItems/change', function (e, itemMap) {
+            _applyItemBonuses(itemMap);
+        });
     };
 
     _setupEventListeners();
@@ -174,7 +178,6 @@ Hw.Entity.Player = (function(){
         recDamage: recDamage,
         recHealing: recHealing,
         recSanityDamage: recSanityDamage,
-        recSanityHealing: recSanityHealing,
-        applyItemBonuses: applyItemBonuses
+        recSanityHealing: recSanityHealing
     }
 });

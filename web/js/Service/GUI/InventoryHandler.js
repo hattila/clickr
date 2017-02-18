@@ -31,6 +31,10 @@ Hw.Service.InventoryHandler = (function(){
             }
         },
         drop: function (event, ui) {
+            var itemId = ui.draggable.data('item').id;
+            var $item = $('#item-' + itemId);
+            var wasEquipped = $item.parent('div').hasClass('equip-slot');
+
             ui.draggable
                 .css({
                     top: 0,
@@ -44,14 +48,18 @@ Hw.Service.InventoryHandler = (function(){
              * but the placement in the equipment and inventory maps are not.
              */
 
-            if ($(this).hasClass('equip-slot')) {
-                // _equippedItemsMap[$(this).data('slot')] =
-            } else {
+            var isEquipped = $item.parent('div').hasClass('equip-slot');
 
+            /**
+             * If it was not equipped and now it is, or
+             * if it was equipped and not it isn't, then
+             *  - equipped items stats should be recalculated
+             */
+            if ((!wasEquipped && isEquipped) || (wasEquipped && !isEquipped)) {
+                $.publish('/inventory/equippedItems/change');
             }
 
-            Player.applyItemBonuses(_equippedItemsMap);
-
+            _scanDomAndCreateNewInventoryMap(itemId, wasEquipped);
         }
     });
 
@@ -119,9 +127,13 @@ Hw.Service.InventoryHandler = (function(){
         });
     };
 
+    var _scanDomAndCreateNewInventoryMap = function (itemId) {
+
+    };
+
     var getInventory = function () {
         // console.log(_equippedItemsMap);
-        console.log(_inventoryMap);
+        return _inventoryMap;
     };
 
     return {
