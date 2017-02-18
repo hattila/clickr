@@ -33,8 +33,12 @@ Hw.Service.InventoryHandler = (function(){
         drop: function (event, ui) {
             var itemId = ui.draggable.data('item').id;
             var $item = $('#item-' + itemId);
+            var wasInSlot = $item.parent('div').data('slot');
             var wasEquipped = $item.parent('div').hasClass('equip-slot');
 
+            /**
+             * relocates the DOM element
+             */
             ui.draggable
                 .css({
                     top: 0,
@@ -43,10 +47,10 @@ Hw.Service.InventoryHandler = (function(){
                 .appendTo($(this));
 
             /**
-             * TODO find the best way to manage items in the memory map and in the DOM as well.
-             * When an Item is physically replaced by a drag-drop event, the placement in the DOM updates,
-             * but the placement in the equipment and inventory maps are not.
+             * TODO find a better way to manage items in the memory map?.
              */
+            var nowInSlot = $item.parent('div').data('slot');
+            _adjustInventoryMap(wasInSlot, nowInSlot);
 
             var isEquipped = $item.parent('div').hasClass('equip-slot');
 
@@ -56,10 +60,19 @@ Hw.Service.InventoryHandler = (function(){
              *  - equipped items stats should be recalculated
              */
             if ((!wasEquipped && isEquipped) || (wasEquipped && !isEquipped)) {
-                $.publish('/inventory/equippedItems/change');
-            }
+                var equippedItems = {
+                    hat: _inventoryMap.hat,
+                    armor: _inventoryMap.armor,
+                    trinket: _inventoryMap.trinket,
+                    left: _inventoryMap.left,
+                    right: _inventoryMap.right
+                };
 
-            _scanDomAndCreateNewInventoryMap(itemId, wasEquipped);
+                $.publish(
+                    '/inventory/equippedItems/change',
+                    equippedItems
+                );
+            }
         }
     });
 
@@ -127,8 +140,16 @@ Hw.Service.InventoryHandler = (function(){
         });
     };
 
-    var _scanDomAndCreateNewInventoryMap = function (itemId) {
-
+    /**
+     * Moves an item to it's new physical slot in the _inventoryMap
+     *
+     * @param wasInSlot
+     * @param nowInSlot
+     */
+    var _adjustInventoryMap = function (wasInSlot, nowInSlot) {
+        var ref = _inventoryMap[wasInSlot];
+        _inventoryMap[wasInSlot] = null;
+        _inventoryMap[nowInSlot] = ref;
     };
 
     var getInventory = function () {

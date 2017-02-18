@@ -156,7 +156,7 @@ Hw.Entity.Player = (function(){
     };
 
     var _applyItemBonuses = function (items) {
-        console.log('Should apply equipped item effects');
+        console.log('Should apply equipped item effects', items);
     };
 
     var _setupEventListeners = function () {
@@ -165,8 +165,8 @@ Hw.Entity.Player = (function(){
             _awardXp();
         });
 
-        $.subscribe('/inventory/equippedItems/change', function (e, itemMap) {
-            _applyItemBonuses(itemMap);
+        $.subscribe('/inventory/equippedItems/change', function (e, equippedItems) {
+            _applyItemBonuses(equippedItems);
         });
     };
 
