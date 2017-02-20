@@ -16,7 +16,7 @@ Hw.Entity.Player = (function(){
     var _level = 1;
     var _xp = 0;
 
-    var _bonus = {
+    var _bonuses = {
         damage: 0,
         stamina: 0,
         sanity: 0,
@@ -79,6 +79,10 @@ Hw.Entity.Player = (function(){
         _sanity = heal < _maxSanity - _sanity ? _sanity + heal : _maxSanity;
         _updateSanity();
         return _sanity;
+    };
+
+    var getBonuses = function () {
+        return _bonuses;
     };
 
     /**
@@ -157,6 +161,26 @@ Hw.Entity.Player = (function(){
 
     var _applyItemBonuses = function (items) {
         console.log('Should apply equipped item effects', items);
+
+        // TODO: better way without duplicating the bonuses object?
+        var _equippedEffects = {
+            damage: 0,
+            stamina: 0,
+            sanity: 0,
+            armor: 0
+        };
+        
+        $.each(items, function (key, item) {
+            if (item !== null) {
+                $.each(item.getEffects(), function (effect, value) {
+                    if (_equippedEffects.hasOwnProperty(effect)) {
+                        _equippedEffects[effect] += value;
+                    }
+                });
+            }
+        });
+
+        _bonuses = _equippedEffects;
     };
 
     var _setupEventListeners = function () {
@@ -178,6 +202,7 @@ Hw.Entity.Player = (function(){
         recDamage: recDamage,
         recHealing: recHealing,
         recSanityDamage: recSanityDamage,
-        recSanityHealing: recSanityHealing
+        recSanityHealing: recSanityHealing,
+        getBonuses: getBonuses
     }
 });
