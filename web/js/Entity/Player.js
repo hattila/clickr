@@ -1,18 +1,15 @@
 
 Hw.Entity.Player = (function(){
 
-    /**
-     * BaseDamage
-     *
-     * @type {number}
-     * @private
-     */
-    var _damage = 1;
-    var _stamina = 100;
-    var _maxStamina = 100;
-    var _sanity = 100;
-    var _maxSanity = 100;
-    var _armor = 0;
+    var _stats = {
+        stamina: 100,
+        maxStamina: 100,
+        sanity: 100,
+        maxSanity: 100,
+        damage: 1,
+        armor: 0
+    };
+
     var _level = 1;
     var _xp = 0;
 
@@ -33,8 +30,28 @@ Hw.Entity.Player = (function(){
         xp: $(_statsContainerId + ' .xp')
     };
 
+    var getStamina = function () {
+        return _stats.stamina;
+    };
+
+    var getMaxStamina = function () {
+        return _stats.maxStamina + _bonuses.stamina;
+    };
+
+    var getSanity = function () {
+        return _stats.sanity;
+    };
+
+    var getMaxSanity = function () {
+        return _stats.maxSanity + _bonuses.sanity;
+    };
+
     var getDamage = function () {
-        return _damage;
+        return _stats.damage + _bonuses.damage;
+    };
+
+    var getArmor = function () {
+        return _stats.armor + _bonuses.armor;
     };
 
     /**
@@ -44,19 +61,19 @@ Hw.Entity.Player = (function(){
      * @returns {number}
      */
     var recDamage = function (damage) {
-        _stamina = damage < _stamina ? _stamina - damage : 0;
-        _updateStamina();
+        _stats.stamina = damage < _stats.stamina ? _stats.stamina - damage : 0;
+        _updateStat('stamina');
 
-        if (0 === _stamina) {
+        if (0 === _stats.stamina) {
             $.publish('/player/dies');
         }
 
-        return _stamina;
+        return _stats.stamina;
     };
     var recHealing = function (heal) {
-        _stamina = heal < _maxStamina - _stamina ? _stamina + heal : _maxStamina;
-        _updateStamina();
-        return _stamina;
+        _stats.stamina = heal < _stats.maxStamina - _stats.stamina ? _stats.stamina + heal : _stats.maxStamina;
+        _updateStat('stamina');
+        return _stats.stamina;
     };
 
     /**
@@ -66,19 +83,19 @@ Hw.Entity.Player = (function(){
      * @returns {number}
      */
     var recSanityDamage = function (damage) {
-        _sanity = damage < _sanity ? _sanity - damage : 0;
-        _updateSanity();
+        _stats.stanity = damage < _stats.stanity ? _stats.stanity - damage : 0;
+        _updateStat('sanity');
 
-        if (0 === _sanity) {
+        if (0 === _stats.stanity) {
             $.publish('/player/goesInsane');
         }
 
-        return _sanity;
+        return _stats.stanity;
     };
     var recSanityHealing = function (heal) {
-        _sanity = heal < _maxSanity - _sanity ? _sanity + heal : _maxSanity;
-        _updateSanity();
-        return _sanity;
+        _stats.stanity = heal < _stats.maxSanity - _stats.stanity ? _stats.stanity + heal : _stats.maxSanity;
+        _updateStat('sanity');
+        return _stats.stanity;
     };
 
     var getBonuses = function () {
@@ -102,8 +119,8 @@ Hw.Entity.Player = (function(){
         if (_xp >= 10) {
             _level += 1;
             _updateLevel();
-            _damage++;
-            _updateDamage();
+            _stats.damage++;
+            _updateStat('damage');
             _xp = _xp - 10;
 
             Materialize.toast("Level Up! Damage increased", 4000);
@@ -129,26 +146,10 @@ Hw.Entity.Player = (function(){
             console.warn('Stat does not exist on Player: ' + stat);
             return false;
         }
-        // Cannot access the private property
-        // dynamic variable?
-        _$stats[stat].text(Player['_' + stat]);
+
+        _$stats[stat].text(_stats[stat] + _bonuses[stat]);
+
         return true;
-    };
-
-    var _updateDamage = function () {
-        _$stats.damage.text(_damage);
-    };
-
-    var _updateStamina = function () {
-        _$stats.stamina.text(_stamina);
-    };
-
-    var _updateSanity = function () {
-        _$stats.sanity.text(_sanity);
-    };
-
-    var _updateArmor = function () {
-        _$stats.armor.text(_armor);
     };
 
     var _updateLevel = function () {
@@ -181,6 +182,12 @@ Hw.Entity.Player = (function(){
         });
 
         _bonuses = _equippedEffects;
+
+        $.each(_bonuses, function (bonus, value) {
+            if (_stats.hasOwnProperty(bonus)) {
+                _updateStat(bonus);
+            }
+        });
     };
 
     var _setupEventListeners = function () {
@@ -197,7 +204,12 @@ Hw.Entity.Player = (function(){
     _setupEventListeners();
 
     return {
+        getStamina: getStamina,
+        getMaxStamina: getMaxStamina,
+        getSanity: getSanity,
+        getMaxSanity: getMaxSanity,
         getDamage: getDamage,
+        getArmor: getArmor,
 
         recDamage: recDamage,
         recHealing: recHealing,

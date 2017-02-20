@@ -68,10 +68,7 @@ Hw.Service.InventoryHandler = (function(){
                     right: _inventoryMap.right
                 };
 
-                $.publish(
-                    '/inventory/equippedItems/change',
-                    equippedItems
-                );
+                $.publish('/inventory/equippedItems/change', equippedItems);
             }
         }
     });
@@ -106,6 +103,15 @@ Hw.Service.InventoryHandler = (function(){
                 _inventoryMap[slot] = item;
             }
         });
+
+        var equippedItems = {
+            hat: _inventoryMap.hat,
+            armor: _inventoryMap.armor,
+            trinket: _inventoryMap.trinket,
+            left: _inventoryMap.left,
+            right: _inventoryMap.right
+        };
+        $.publish('/inventory/equippedItems/change', equippedItems);
 
         _updateInventoryHtml();
     };
