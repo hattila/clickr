@@ -57,20 +57,19 @@ Hw.Service.InventoryHandler = (function(){
              * where the dropped item is coming from (switch)
              */
             if ($.trim($(this).html()) !== '') {
+                var $elementInSlot = $(this).children('div.inv-item');
 
                 /**
-                 * @TODO
                  * switch can only occur if the element to be switched fits the
                  * slot from where the item is coming
-                 * Now if the dragged element was equipped, we deny switching
                  */
-                if (wasEquipped) {
+                if (wasEquipped && ui.draggable.data('item').type !== $elementInSlot.data('item').type) {
                     ui.draggable.draggable('option', 'revert', true);
+                    Materialize.toast('I can\'t put that there.', 1500);
                     return false;
                 } else {
-                    $(this).children('div.inv-item').appendTo($item.parent('div'));
+                    $elementInSlot.appendTo($item.parent('div'));
                 }
-
             }
 
             /**
