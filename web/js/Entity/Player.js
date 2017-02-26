@@ -161,7 +161,7 @@ Hw.Entity.Player = (function(){
     };
 
     var _applyItemBonuses = function (items) {
-        console.log('Should apply equipped item effects', items);
+        // console.log('Should apply equipped item effects', items);
 
         // TODO: better way without duplicating the bonuses object?
         var _equippedEffects = {

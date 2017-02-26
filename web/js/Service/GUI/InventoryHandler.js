@@ -17,10 +17,19 @@ Hw.Service.InventoryHandler = (function(){
     $('.inv-slot').droppable({
         accept: function (draggable) {
             if ($(this).hasClass('equip-slot')) {
+
+                /**
+                 * Left and right hand slots can only be equipped with items of type: weapon
+                 */
                 if (-1 !== ['left', 'right'].indexOf($(this).data('slot')) && 'weapon' == $(draggable).data('item').type) {
                     return true;
                 }
 
+                /**
+                 * All the other equippable slots can hold an item with the same type. eg:
+                 * armor: armor
+                 * trinket: trinket
+                 */
                 if ($(this).data('slot') == $(draggable).data('item').type) {
                     return true;
                 }
@@ -96,7 +105,7 @@ Hw.Service.InventoryHandler = (function(){
      *   items[1] => [rest of the inventory]
      */
     var setupInventory = function (items) {
-        console.log('Setting up the inventory with Items: ', items);
+        // console.log('Setting up the inventory with Items: ', items);
 
         $.each(items, function (slot, item) {
             if (_inventoryMap.hasOwnProperty(slot)) {
@@ -123,9 +132,6 @@ Hw.Service.InventoryHandler = (function(){
                 inventoryToPut = $_equippedInventory;
             }
 
-            // $_equippedInventory.find("[data-slot='" + slot + "']").html(item.getItemHtml());
-            // $_inventory.find("[data-slot='" + slot + "']").html(item.getItemHtml());
-
             if (item != null) {
                 inventoryToPut.find("[data-slot='" + slot + "']").html(item.getItemHtml());
             } else {
@@ -147,7 +153,7 @@ Hw.Service.InventoryHandler = (function(){
     };
 
     /**
-     * Moves an item to it's new physical slot in the _inventoryMap
+     * Moves an item to it's new location in the _inventoryMap based on it's physical location
      *
      * @param wasInSlot
      * @param nowInSlot

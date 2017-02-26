@@ -85,7 +85,7 @@ Hw.Service.Game = (function(){
                     Hw.Service.Spawner.spawnMonstersToAField(_$gameField, level.monstersPerWave, level.delayInWave);
                     wave++;
                 } else {
-                    console.log('Levels monsters have spawned. Clearing wave interval.');
+                    // console.log('Levels monsters have spawned. Clearing wave interval.');
                     clearInterval(levelWaveInterval);
                 }
             }, level.waveTimer);
@@ -95,7 +95,7 @@ Hw.Service.Game = (function(){
 
                 if (monstersKilled == level.monsterCount) {
                     // win condition
-                    console.log('All monsters killed, moving on ...');
+                    // console.log('All monsters killed, moving on ...');
                     _levelCompleted(level);
                 }
             });
@@ -134,7 +134,7 @@ Hw.Service.Game = (function(){
                 {
                     title: 'Just a button',
                     action: function () {
-                        console.log('only a placeholder');
+                        // console.log('only a placeholder');
                     }
                 },
                 {
@@ -166,7 +166,7 @@ Hw.Service.Game = (function(){
     };
 
     var _levelFailed = function () {
-        console.log('You have lost.');
+        // console.log('You have lost.');
 
         var menu = {
             title: 'Level Failed!',

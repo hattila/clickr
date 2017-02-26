@@ -27,11 +27,11 @@ Hw.Service.MonsterDamageDealer = (function(){
     var _attachDamageDealer = function (monster) {
 
         var damageInterval = setInterval(function () {
-            console.log(
-                'Monster (id: %d) deals damage (stamina: %d)',
-                monster.getId(),
-                monster.getDamage().stamina
-            );
+            // console.log(
+            //     'Monster (id: %d) deals damage (stamina: %d)',
+            //     monster.getId(),
+            //     monster.getDamage().stamina
+            // );
             monster.dealDamage();
         },2500);
 
