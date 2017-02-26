@@ -17,6 +17,12 @@ Hw.Service.InventoryHandler = (function(){
     $('.inv-slot').droppable({
         accept: function (draggable) {
             if ($(this).hasClass('equip-slot')) {
+                // /**
+                //  * If the target equip slot is not empty then dropping is not allowed
+                //  */
+                // if ('' !== $.trim($(this).html())) {
+                //     return false;
+                // }
 
                 /**
                  * Left and right hand slots can only be equipped with items of type: weapon
@@ -36,7 +42,8 @@ Hw.Service.InventoryHandler = (function(){
 
                 return false;
             } else {
-                return (draggable.hasClass('inv-item') && '' === $.trim($(this).html()));
+                // && '' === $.trim($(this).html())
+                return (draggable.hasClass('inv-item'));
             }
         },
         drop: function (event, ui) {
@@ -44,6 +51,14 @@ Hw.Service.InventoryHandler = (function(){
             var $item = $('#item-' + itemId);
             var wasInSlot = $item.parent('div').data('slot');
             var wasEquipped = $item.parent('div').hasClass('equip-slot');
+
+            /**
+             * if the slot was occupied, relocate the occupying item to the slot
+             * where the dropped item is coming from (switch)
+             */
+            if ($.trim($(this).html()) !== '') {
+               $(this).children('div.inv-item').appendTo($item.parent('div'));
+            }
 
             /**
              * relocates the DOM element
