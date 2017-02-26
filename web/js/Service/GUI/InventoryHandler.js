@@ -16,35 +16,35 @@ Hw.Service.InventoryHandler = (function(){
 
     $('.inv-slot').droppable({
         accept: function (draggable) {
-            if ($(this).hasClass('equip-slot')) {
-                // /**
-                //  * If the target equip slot is not empty then dropping is not allowed
-                //  */
-                // if ('' !== $.trim($(this).html())) {
-                //     return false;
-                // }
+            if (draggable.hasClass('inv-item')) {
+                if ($(this).hasClass('equip-slot')) {
 
-                /**
-                 * Left and right hand slots can only be equipped with items of type: weapon
-                 */
-                if (-1 !== ['left', 'right'].indexOf($(this).data('slot')) && 'weapon' == $(draggable).data('item').type) {
-                    return true;
+                    /**
+                     * Left and right hand slots can only be equipped with items of type: weapon
+                     */
+                    if (-1 !== ['left', 'right'].indexOf($(this).data('slot')) && 'weapon' == $(draggable).data('item').type) {
+                        return true;
+                    }
+
+                    /**
+                     * All the other equippable slots can hold an item with the same type. eg:
+                     * armor: armor
+                     * trinket: trinket
+                     */
+                    if ($(this).data('slot') == $(draggable).data('item').type) {
+                        return true;
+                    }
+
+                    return false;
+                } else {
+                    if ($(this).data('slot') == $(draggable).data('item').type || $(this).hasClass('inv-slot')) {
+                        return true;
+                    } else {
+                        return false;
+                    }
                 }
-
-                /**
-                 * All the other equippable slots can hold an item with the same type. eg:
-                 * armor: armor
-                 * trinket: trinket
-                 */
-                if ($(this).data('slot') == $(draggable).data('item').type) {
-                    return true;
-                }
-
-                return false;
-            } else {
-                // && '' === $.trim($(this).html())
-                return (draggable.hasClass('inv-item'));
             }
+            return false;
         },
         drop: function (event, ui) {
             var itemId = ui.draggable.data('item').id;
@@ -57,7 +57,20 @@ Hw.Service.InventoryHandler = (function(){
              * where the dropped item is coming from (switch)
              */
             if ($.trim($(this).html()) !== '') {
-               $(this).children('div.inv-item').appendTo($item.parent('div'));
+
+                /**
+                 * @TODO
+                 * switch can only occur if the element to be switched fits the
+                 * slot from where the item is coming
+                 * Now if the dragged element was equipped, we deny switching
+                 */
+                if (wasEquipped) {
+                    ui.draggable.draggable('option', 'revert', true);
+                    return false;
+                } else {
+                    $(this).children('div.inv-item').appendTo($item.parent('div'));
+                }
+
             }
 
             /**
@@ -175,7 +188,7 @@ Hw.Service.InventoryHandler = (function(){
      */
     var _adjustInventoryMap = function (wasInSlot, nowInSlot) {
         var ref = _inventoryMap[wasInSlot];
-        _inventoryMap[wasInSlot] = null;
+        _inventoryMap[wasInSlot] = _inventoryMap[nowInSlot];
         _inventoryMap[nowInSlot] = ref;
     };
 

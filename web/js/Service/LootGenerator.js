@@ -120,7 +120,9 @@ Hw.Service.LootGenerator = (function () {
             left: null,
             right: generateItem(1, 1),
             0: null,
-            1: generateItem()
+            1: generateItem(),
+            2: null,
+            3: generateItem()
         };
     };
 
