@@ -111,7 +111,7 @@ Hw.Service.InventoryHandler = (function(){
 
     var $_equippedInventory = $('#equipped-inventory');
     var $_inventory = $('#inventory');
-    var _slotNames = ['hat', 'armor', 'trinket', 'left', 'right'];
+    var _equipSlotNames = ['hat', 'armor', 'trinket', 'left', 'right'];
     var _inventoryMap =
         {
             hat: null,
@@ -152,10 +152,40 @@ Hw.Service.InventoryHandler = (function(){
         _updateInventoryHtml();
     };
 
+    var addItemToInventory = function (item) {
+        var freeSlot = _getFirstEmptyInventorySlot();
+
+        if (freeSlot === null) {
+            Materialize.toast('Inventory full', 1500);
+            return false;
+        }
+
+        console.log(freeSlot, item);
+
+        _inventoryMap[freeSlot] = item;
+        _updateInventoryHtml();
+    };
+
+    var _getFirstEmptyInventorySlot = function () {
+        var firstEmptySlot = null;
+
+        $.each(_inventoryMap, function(slot, item){
+            // @TODO: only check inventory slots, not equip slots
+            // if (Number.isInteger(slot)) {
+                if (item === null && $.trim($('.inv-slot[data-slot="' + slot + '"]').html()) === '') {
+                    firstEmptySlot = slot;
+                    return false;
+                }
+            // }
+        });
+
+        return firstEmptySlot;
+    };
+
     var _updateInventoryHtml = function () {
         $.each(_inventoryMap, function(slot, item){
             var inventoryToPut = $_inventory;
-            if (-1 !== _slotNames.indexOf(slot)) {
+            if (-1 !== _equipSlotNames.indexOf(slot)) {
                 inventoryToPut = $_equippedInventory;
             }
 
@@ -198,6 +228,7 @@ Hw.Service.InventoryHandler = (function(){
 
     return {
         setupInventory: setupInventory,
-        getInventory: getInventory
+        getInventory: getInventory,
+        addItemToInventory: addItemToInventory
     }
 })();

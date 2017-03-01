@@ -18,7 +18,8 @@ Hw.Service.LootGenerator = (function () {
      */
     var _baseItems = [];
     var _startingGear = [];
-    var _itemTmp = $('#item-template').html();
+    // var _itemTmp = $('#item-template').html();
+    var _itemTmp = '<div id=item-{id} class="inv-item {class_name} {rarity_name}" data-item="{item}"></div>';
     var _rarities = [
         {
             name: 'junk',

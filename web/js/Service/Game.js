@@ -163,16 +163,10 @@ Hw.Service.Game = (function(){
             $.each(loot, function(k, item) {
                 $('#ingame-menu .loot').append(item.getItemHtml());
             });
-            $('.inv-item').draggable({
-                revert: function (isValid) {
-                    if (isValid) {
-                        return false;
-                    } else {
-                        Materialize.toast('I can\'t put that there.', 1500);
-                        return true;
-                    }
-                },
-                revertDuration: 100
+            $.each($('#ingame-menu .loot .inv-item'), function(k, item) {
+                $(item).click(function () {
+                    Hw.Service.InventoryHandler.addItemToInventory(loot[k]);
+                });
             });
         });
     };

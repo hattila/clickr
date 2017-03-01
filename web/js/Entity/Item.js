@@ -52,6 +52,13 @@ Hw.Entity.Item = (function(name, image, type, rarity, template, effects){
     };
 
     var getItemHtml = function () {
+
+        // @TODO: if it never needs to be re-renderd then return the rendered template, otherwise
+        // return what is parsed, but don't overwrite the string property!
+        if (typeof _template !== 'string') {
+            return _template;
+        }
+
         _template = _template
             .replace('{id}', _id)
             .replace(/{class_name}/g, _name.toLowerCase())
