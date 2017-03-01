@@ -150,12 +150,6 @@ Hw.Service.Game = (function(){
         Hw.Service.Timer.pause();
 
         if (_currentLevelIdx + 1 == _levels.length) {
-            $('#ultimate-message')
-                .html('You win.')
-                .removeClass('bad')
-                .addClass('good')
-                .fadeIn(200);
-
             menu.title = 'Game Completed!';
             menu.actions = [];
         }
@@ -181,12 +175,6 @@ Hw.Service.Game = (function(){
                 }
             ]
         };
-
-        $('#ultimate-message')
-            .html('You have lost.')
-            .removeClass('good')
-            .addClass('bad')
-            .fadeIn(200);
 
         Hw.Service.Spawner.wipeField();
         Hw.Service.IngameMenu.open(menu);
