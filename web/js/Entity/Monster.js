@@ -174,7 +174,7 @@ Hw.Entity.Monster = (function(template, name, image, hp, damage) {
         setPosition: setPosition,
 
         recDamage: recDamage,
-        recHeal: recHealing,
+        recHealing: recHealing,
         dealDamage: dealDamage,
         getMonsterHtml: getMonsterHtml,
         removeMonster: removeMonster

@@ -98,6 +98,13 @@ Hw.Entity.Player = (function(){
         return _stats.stanity;
     };
 
+    var resetPlayerStats = function () {
+        _stats.stamina = _stats.maxStamina;
+        _updateStat('stamina');
+        _stats.sanity = _stats.maxSanity;
+        _updateStat('sanity');
+    };
+
     var getBonuses = function () {
         return _bonuses;
     };
@@ -215,6 +222,7 @@ Hw.Entity.Player = (function(){
         recHealing: recHealing,
         recSanityDamage: recSanityDamage,
         recSanityHealing: recSanityHealing,
+        resetPlayerStats: resetPlayerStats,
         getBonuses: getBonuses
     }
 });

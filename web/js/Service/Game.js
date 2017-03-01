@@ -176,6 +176,7 @@ Hw.Service.Game = (function(){
                     action: function () {
                         Hw.Service.IngameMenu.close();
                         _initLevel(_currentLevelIdx);
+                        Player.resetPlayerStats();
                     }
                 }
             ]
