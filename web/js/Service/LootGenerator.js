@@ -47,6 +47,8 @@ Hw.Service.LootGenerator = (function () {
         }
     ];
 
+    var _currentGeneratedLoot = [];
+
     var loadBaseItems = function (callback) {
         $.ajax({
             url: '/items',
@@ -142,9 +144,21 @@ Hw.Service.LootGenerator = (function () {
         return _baseItems[Math.floor(Math.random() * (_baseItems.length))];
     };
 
+    var generateLoot = function () {
+        var items = Math.floor(Math.random() * (2 - 1 + 1)) + 1;
+
+        var loot = [];
+        for (var i = 0; i < items; i++) {
+            loot.push(generateItem());
+        }
+
+        return loot;
+    };
+
     return {
         loadBaseItems: loadBaseItems,
         getStartingGear: getStartingGear,
-        generateItem: generateItem
+        generateItem: generateItem,
+        generateLoot: generateLoot
     }
 })();

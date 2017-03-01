@@ -12,7 +12,7 @@ Hw.Service.IngameMenu = (function(){
 
     // event listener to the ESC key ?
 
-    var open = function (menu) {
+    var open = function (menu, postOpenCallback) {
         menu = menu || {
                 title: 'Ingame Menu',
                 content: '',
@@ -46,6 +46,10 @@ Hw.Service.IngameMenu = (function(){
         }
 
         _template.addClass('open');
+
+        if (typeof postOpenCallback === 'function') {
+            postOpenCallback()
+        }
     };
 
     var close = function () {

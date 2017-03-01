@@ -13,7 +13,7 @@ Hw.Service.Game = (function(){
             id: 1,
             name: 'Forest',
             background: 'image/level_backgrounds/forest.jpg',
-            monsterCount: 12,
+            monsterCount: 2,
             monstersPerWave: 2,
             timer: 31,
             waveTimer: 2450,
@@ -122,6 +122,9 @@ Hw.Service.Game = (function(){
     };
 
     var _levelCompleted = function () {
+
+        var loot = Hw.Service.LootGenerator.generateLoot();
+
         var menu = {
             title: 'Level Complete!',
             content: $.parseHTML(
@@ -132,7 +135,7 @@ Hw.Service.Game = (function(){
             ),
             actions: [
                 {
-                    title: 'Just a button',
+                    title: 'Take the Loot!',
                     action: function () {
                         // console.log('only a placeholder');
                     }
@@ -156,7 +159,22 @@ Hw.Service.Game = (function(){
 
         _currentLevelIdx++;
 
-        Hw.Service.IngameMenu.open(menu);
+        Hw.Service.IngameMenu.open(menu, function () {
+            $.each(loot, function(k, item) {
+                $('#ingame-menu .loot').append(item.getItemHtml());
+            });
+            $('.inv-item').draggable({
+                revert: function (isValid) {
+                    if (isValid) {
+                        return false;
+                    } else {
+                        Materialize.toast('I can\'t put that there.', 1500);
+                        return true;
+                    }
+                },
+                revertDuration: 100
+            });
+        });
     };
 
     var _levelFailed = function () {
