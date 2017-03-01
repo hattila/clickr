@@ -98,24 +98,8 @@ Hw.Service.Spawner = (function(){
         clearTimeout(_monsterSpawningIntervalVar);
         _monsterSpawningActive = false;
 
-        var count = _monstersOnTheField.length;
-
-        for (var i = 0; i < count; i++) {
-            if (_monstersOnTheField[i]) {
-                _monstersOnTheField[i].removeMonster();
-            }
-        }
-        // TODO: omg szegyenteljes
-        for (i = 0; i < count; i++) {
-            if (_monstersOnTheField[i]) {
-                _monstersOnTheField[i].removeMonster();
-            }
-        }
-        // TODO: omg szegyenteljes
-        for (i = 0; i < count; i++) {
-            if (_monstersOnTheField[i]) {
-                _monstersOnTheField[i].removeMonster();
-            }
+        while (_monstersOnTheField.length > 0) {
+            _monstersOnTheField[0].removeMonster();
         }
 
     };
