@@ -123,14 +123,15 @@ Hw.Service.LootGenerator = (function () {
 
         return {
             hat: null,
-            armor: generateItem(5, 0),
+            // armor: generateItem(5, 0),
+            armor: null,
             trinket: null,
             left: null,
             right: generateItem(1, 1),
             0: null,
             1: generateItem(),
-            2: null,
-            3: generateItem()
+            2: null
+            // 3: generateItem()
         };
     };
 

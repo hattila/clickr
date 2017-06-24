@@ -166,7 +166,10 @@ Hw.Service.InventoryHandler = (function(){
         console.log(freeSlot, item);
 
         _inventoryMap[freeSlot] = item;
-        _updateInventoryHtml();
+
+        $_inventory.find("[data-slot='" + freeSlot + "']").html(item.getDomObject());
+        _attachDraggableToItem(item.getDomObject());
+        // _updateInventoryHtml();
     };
 
     var _getFirstEmptyInventorySlot = function () {
@@ -186,10 +189,7 @@ Hw.Service.InventoryHandler = (function(){
     };
 
     var _updateInventoryHtml = function () {
-
-        console.log('and now it\'s all gone');
-
-        _clearInventory();
+        // _clearInventory();
 
         $.each(_inventoryMap, function(slot, item){
             var inventoryToPut = $_inventory;
@@ -201,12 +201,17 @@ Hw.Service.InventoryHandler = (function(){
                 console.log(item.getId());
 
                 inventoryToPut.find("[data-slot='" + slot + "']").html(item.getDomObject());
+
+                _attachDraggableToItem(item.getDomObject());
             } else {
                 inventoryToPut.find("[data-slot='" + slot + "']").html('');
             }
         });
+    };
 
-        $(_invItemClass).draggable({
+    var _attachDraggableToItem = function (item) {
+        $(item).draggable({
+            // containment: '#inventory', // element cannot pass the boundary of the containing element
             revert: function (isValid) {
                 if (isValid) {
                     return false;
