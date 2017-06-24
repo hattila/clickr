@@ -128,10 +128,16 @@ Hw.Service.LootGenerator = (function () {
             trinket: null,
             left: null,
             right: generateItem(1, 1),
-            0: null,
-            1: generateItem(),
-            2: null
-            // 3: generateItem()
+            0: generateItem(3, 0),
+            1: generateItem(3, 1),
+            2: generateItem(3, 2),
+            3: generateItem(3, 3),
+            4: generateItem(3, 4),
+            5: generateItem(7, 0),
+            6: generateItem(7, 1),
+            7: generateItem(7, 2),
+            8: generateItem(7, 3),
+            9: generateItem(7, 4)
         };
     };
 

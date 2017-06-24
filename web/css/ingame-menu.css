@@ -8,7 +8,7 @@ div#ingame-menu {
 	top: 150px;
 	left: -500px;
 	width: 500px;
-	margin-left: -250px;
+	/*margin-left: -250px;*/
 
 	z-index: 4;
 
@@ -16,7 +16,7 @@ div#ingame-menu {
 }
 
 div#ingame-menu.open {
-	left: 50%;
+	left: 10%;
 }
 
 div#ingame-menu .title {
