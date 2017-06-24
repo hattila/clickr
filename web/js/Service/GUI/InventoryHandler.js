@@ -16,6 +16,9 @@ Hw.Service.InventoryHandler = (function(){
 
     $('.inv-slot').droppable({
         accept: function (draggable) {
+
+            console.log($(draggable).data('item'));
+
             if (draggable.hasClass('inv-item')) {
                 if ($(this).hasClass('equip-slot')) {
 
@@ -183,14 +186,21 @@ Hw.Service.InventoryHandler = (function(){
     };
 
     var _updateInventoryHtml = function () {
+
+        console.log('and now it\'s all gone');
+
+        _clearInventory();
+
         $.each(_inventoryMap, function(slot, item){
             var inventoryToPut = $_inventory;
             if (-1 !== _equipSlotNames.indexOf(slot)) {
                 inventoryToPut = $_equippedInventory;
             }
 
-            if (item != null) {
-                inventoryToPut.find("[data-slot='" + slot + "']").html(item.getItemHtml());
+            if (item !== null) {
+                console.log(item.getId());
+
+                inventoryToPut.find("[data-slot='" + slot + "']").html(item.getDomObject());
             } else {
                 inventoryToPut.find("[data-slot='" + slot + "']").html('');
             }
@@ -206,6 +216,16 @@ Hw.Service.InventoryHandler = (function(){
                 }
             },
             revertDuration: 100
+        });
+    };
+
+    var _clearInventory = function () {
+        $.each(_inventoryMap, function(slot, item){
+            var inventoryToPut = $_inventory;
+            if (-1 !== _equipSlotNames.indexOf(slot)) {
+                inventoryToPut = $_equippedInventory;
+            }
+            inventoryToPut.find("[data-slot='" + slot + "']").html('');
         });
     };
 

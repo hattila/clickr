@@ -14,6 +14,7 @@ Hw.Entity.Item = (function(name, image, type, rarity, template, effects){
     var _type;
     var _rarity;
     var _template;
+    var _domObject;
     var _effects;
 
     var _rarityNames = [
@@ -53,28 +54,52 @@ Hw.Entity.Item = (function(name, image, type, rarity, template, effects){
 
     var getItemHtml = function () {
 
-        // @TODO: if it never needs to be re-renderd then return the rendered template, otherwise
-        // return what is parsed, but don't overwrite the string property!
-        if (typeof _template !== 'string') {
-            return _template;
-        }
+        // // @TODO: if it never needs to be re-renderd then return the rendered template, otherwise
+        // // return what is parsed, but don't overwrite the string property!
+        // if (typeof _template !== 'string') {
+        //     return _template;
+        // }
 
         _template = _template
             .replace('{id}', _id)
             .replace(/{class_name}/g, _name.toLowerCase())
             .replace(/{rarity_name}/g, _getRarityName(_rarity))
-            .replace('{item}', JSON.stringify({
-                id: _id,
-                type: _type,
-                rarity: _rarity,
-                effects: _effects
-            }));
-
-        _template = $.parseHTML(_template);
-
-        $(_template).attr('style', 'background-image: url(\'' + getImage() + '\');');
+            // .replace(
+            //     '{item}',
+            //     // JSON.stringify(
+            //         {
+            //             id: _id,
+            //             type: _type,
+            //             rarity: _rarity,
+            //             effects: _effects
+            //         }
+            //     // )
+            // )
+        ;
 
         return _template;
+    };
+
+    var getDomObject = function () {
+        console.log(typeof _domObject);
+
+        if (typeof _domObject === 'undefined') {
+            _domObject = $.parseHTML(getItemHtml());
+
+            $(_domObject).data(
+                'item',
+                {
+                    id: _id,
+                    type: _type,
+                    rarity: _rarity,
+                    effects: _effects
+                });
+            $(_domObject).attr('style', 'background-image: url(\'' + getImage() + '\');');
+        }
+
+        console.log(_domObject);
+
+        return _domObject;
     };
 
 
@@ -89,6 +114,7 @@ Hw.Entity.Item = (function(name, image, type, rarity, template, effects){
         getType: getType,
         getRarity: getRarity,
         getEffects: getEffects,
-        getItemHtml: getItemHtml
+        getItemHtml: getItemHtml,
+        getDomObject: getDomObject
     }
 });

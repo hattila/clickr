@@ -19,7 +19,7 @@ Hw.Service.LootGenerator = (function () {
     var _baseItems = [];
     var _startingGear = [];
     // var _itemTmp = $('#item-template').html();
-    var _itemTmp = '<div id=item-{id} class="inv-item {class_name} {rarity_name}" data-item="{item}"></div>';
+    var _itemTmp = '<div id="item-{id}" class="inv-item {class_name} {rarity_name}"></div>';
     var _rarities = [
         {
             name: 'junk',
@@ -66,7 +66,11 @@ Hw.Service.LootGenerator = (function () {
     };
 
     /**
-     * Generic item generator, can give anything.
+     * Generic item generator
+     *
+     * If no inbound properties are given, then a random item with a random rarity will be generated
+     * If the item is specified (via an itemBase id), than it won't be random
+     * If the rarity is specified, than it won't be random
      */
     var generateItem = function (id, rarity) {
         id = id || false;
@@ -74,6 +78,7 @@ Hw.Service.LootGenerator = (function () {
 
         var baseItem = id ? _getBaseItemById(id) : _getRandomBaseItem();
 
+        // random rarity based on chance
         if (undefined === rarity) {
             /**
              * 20 % to junk
@@ -146,7 +151,8 @@ Hw.Service.LootGenerator = (function () {
     };
 
     var generateLoot = function () {
-        var items = Math.floor(Math.random() * (2 - 1 + 1)) + 1;
+        // the number of items
+        var items = Math.floor(Math.random() * (2 - 1 + 1)) + 1; // 1 - 2
 
         var loot = [];
         for (var i = 0; i < items; i++) {

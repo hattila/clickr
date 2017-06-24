@@ -93,7 +93,7 @@ Hw.Service.Game = (function(){
             $.subscribe('/monster/dies', function(e, monsterId){
                 monstersKilled++;
 
-                if (monstersKilled == level.monsterCount) {
+                if (monstersKilled === level.monsterCount) {
                     // win condition
                     // console.log('All monsters killed, moving on ...');
                     _levelCompleted(level);
@@ -137,7 +137,7 @@ Hw.Service.Game = (function(){
                 {
                     title: 'Take the Loot!',
                     action: function () {
-                        // console.log('only a placeholder');
+                        console.log('Implementation underway');
                     }
                 },
                 {
@@ -152,7 +152,7 @@ Hw.Service.Game = (function(){
 
         Hw.Service.Timer.pause();
 
-        if (_currentLevelIdx + 1 == _levels.length) {
+        if (_currentLevelIdx + 1 === _levels.length) {
             menu.title = 'Game Completed!';
             menu.actions = [];
         }
@@ -161,7 +161,7 @@ Hw.Service.Game = (function(){
 
         Hw.Service.IngameMenu.open(menu, function () {
             $.each(loot, function(k, item) {
-                $('#ingame-menu .loot').append(item.getItemHtml());
+                $('#ingame-menu .loot').append(item.getDomObject());
             });
             $.each($('#ingame-menu .loot .inv-item'), function(k, item) {
                 $(item).click(function () {
