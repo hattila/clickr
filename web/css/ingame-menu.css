@@ -10,7 +10,7 @@ div#ingame-menu {
 	width: 500px;
 	margin-left: -250px;
 
-	z-index: 3;
+	z-index: 4;
 
 	transition: left 1s;
 }
