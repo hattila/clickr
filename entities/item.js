@@ -21,7 +21,7 @@ module.exports = (function () {
             type: 'weapon',
             image: 'image/items/weapons/colt_45.jpg',
             effects: {
-                damage: 8
+                damage: 7
             }
         },
         {
@@ -30,7 +30,7 @@ module.exports = (function () {
             type: 'weapon',
             image: 'image/items/weapons/shotgun.jpg',
             effects: {
-                damage: 15
+                damage: 9
             }
         },
         {
@@ -39,7 +39,7 @@ module.exports = (function () {
             type: 'weapon',
             image: 'image/items/weapons/tommy.jpg',
             effects: {
-                damage: 22
+                damage: 11
             }
         },
         {

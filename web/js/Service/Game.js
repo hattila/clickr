@@ -13,7 +13,7 @@ Hw.Service.Game = (function(){
             id: 1,
             name: 'Forest',
             background: 'image/level_backgrounds/forest.jpg',
-            monsterCount: 2,
+            monsterCount: 12, // 12
             monstersPerWave: 2,
             timer: 31,
             waveTimer: 2450,

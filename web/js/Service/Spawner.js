@@ -114,7 +114,7 @@ Hw.Service.Spawner = (function(){
     var _spawnRandomMonster = function () {
         var randomMonster = _monsters[Math.floor(Math.random() * (_monsters.length))];
         var hp = typeof randomMonster.hp === 'object' ?
-            randomMonster.hp[Math.floor(Math.random() * (randomMonster.hp.length))] :
+            getRandomInt(randomMonster.hp[0], randomMonster.hp[1]) :
             randomMonster.hp;
 
         return new Hw.Entity.Monster(

@@ -9,7 +9,7 @@ module.exports = (function () {
         {
             id: 1,
             name: 'Zombie',
-            hp: [4, 5, 6],
+            hp: [10, 15],
             image: 'image/drawn_skeleton.jpg',
             damage: {
                 stamina: 2,
@@ -19,7 +19,7 @@ module.exports = (function () {
         {
             id: 2,
             name: 'Bat',
-            hp: [2, 3, 4],
+            hp: [6, 8],
             image: 'image/drawn_bat.jpg',
             damage: {
                 stamina: 1,
@@ -29,7 +29,7 @@ module.exports = (function () {
         {
             id: 3,
             name: 'Warrior',
-            hp: [7, 8],
+            hp: [18, 25],
             image: 'image/drawn_skeleton_warrior.jpg',
             damage: {
                 stamina: 3,
