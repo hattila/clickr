@@ -185,11 +185,11 @@ div.inv-item.legendary {
 /* tooltip */
 
 div.inv-item div.tooltip {
-	display: none;
+	visibility: hidden;
 	opacity: 0;
 	position: absolute;
 	z-index: 1002;
-	transform: translate(0, 0);
+	transform: translate(0, 25px) scale(0.5, 1);
 	background-color: #222;
 	color: #aaaaaa;
 	width: 300%;
@@ -215,8 +215,9 @@ div.inv-item div.tooltip:before {
 div.inv-item:hover div.tooltip,
 div.inv-item.show-tooltip div.tooltip
 {
-	display: block;
+	visibility: visible;
 	opacity: 1;
+	transform: translate(0, 0) scale(1, 1);
 }
 
 div.inv-item div.tooltip span.title {
