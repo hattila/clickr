@@ -89,8 +89,6 @@ Hw.Entity.Item = (function(name, image, type, rarity, template, effects){
     };
 
     var getDomObject = function () {
-        console.log(typeof _domObject);
-
         if (typeof _domObject === 'undefined') {
             _domObject = $.parseHTML(getItemHtml());
 
@@ -104,8 +102,6 @@ Hw.Entity.Item = (function(name, image, type, rarity, template, effects){
                 });
             $(_domObject).attr('style', 'background-image: url(\'' + getImage() + '\');');
         }
-
-        console.log(_domObject);
 
         return _domObject;
     };

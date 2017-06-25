@@ -19,7 +19,6 @@ Hw.Service.LootGenerator = (function () {
     var _baseItems = [];
     var _startingGear = [];
     var _itemTmp = $.trim($('#item-template').html());
-    // var _itemTmp = '<div id="item-{id}" class="inv-item {class_name} {rarity_name}"></div>';
     var _rarities = [
         {
             name: 'junk',
@@ -99,8 +98,6 @@ Hw.Service.LootGenerator = (function () {
             });
         }
 
-        console.log(_itemTmp);
-
         baseItem.rarity = rarity;
 
         return new Hw.Entity.Item(
@@ -130,7 +127,7 @@ Hw.Service.LootGenerator = (function () {
             trinket: null,
             left: null,
             right: generateItem(1, 1),
-            0: generateItem(),
+            0: generateItem()
         };
     };
 

@@ -17,8 +17,6 @@ Hw.Service.InventoryHandler = (function(){
     $('.inv-slot').droppable({
         accept: function (draggable) {
 
-            console.log($(draggable).data('item'));
-
             if (draggable.hasClass('inv-item')) {
                 if ($(this).hasClass('equip-slot')) {
 
@@ -163,8 +161,6 @@ Hw.Service.InventoryHandler = (function(){
             return false;
         }
 
-        console.log(freeSlot, item);
-
         _inventoryMap[freeSlot] = item;
 
         $_inventory.find("[data-slot='" + freeSlot + "']").html(item.getDomObject());
@@ -198,8 +194,6 @@ Hw.Service.InventoryHandler = (function(){
             }
 
             if (item !== null) {
-                console.log(item.getId());
-
                 inventoryToPut.find("[data-slot='" + slot + "']").html(item.getDomObject());
 
                 _attachDraggableToItem(item.getDomObject());
