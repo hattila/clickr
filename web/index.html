@@ -149,9 +149,15 @@
 	</div>
 </script>
 
-<!--<script id="item-template" type="text/template">-->
-	<!--<div id=item-{id} class="inv-item {class_name} {rarity_name}" data-item='{item}'></div>-->
-<!--</script>-->
+<script id="item-template" type="text/template">
+	<div id="item-{id}" class="inv-item {class_name} {rarity_name}">
+		<div class="tooltip">
+			<span class="title {rarity_name}">{item_name}</span><br/>
+			<span class="effects_title">effects:</span><br/>
+			{effects}
+		</div>
+	</div>
+</script>
 
 <script id="menu-mid-level" type="text/template">
 	<p>Combat completed!</p>

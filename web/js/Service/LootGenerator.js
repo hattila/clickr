@@ -18,8 +18,8 @@ Hw.Service.LootGenerator = (function () {
      */
     var _baseItems = [];
     var _startingGear = [];
-    // var _itemTmp = $('#item-template').html();
-    var _itemTmp = '<div id="item-{id}" class="inv-item {class_name} {rarity_name}"></div>';
+    var _itemTmp = $.trim($('#item-template').html());
+    // var _itemTmp = '<div id="item-{id}" class="inv-item {class_name} {rarity_name}"></div>';
     var _rarities = [
         {
             name: 'junk',
@@ -98,6 +98,8 @@ Hw.Service.LootGenerator = (function () {
                 }
             });
         }
+
+        console.log(_itemTmp);
 
         baseItem.rarity = rarity;
 

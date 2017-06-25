@@ -124,7 +124,7 @@ div.inventory-grid div.inv-row div.inv-slot.hand.right:before {
 
 div.inv-item {
 	position: relative;
-	z-index: 3;
+	/*z-index: 3;*/
 	/*width: 100%;*/
 	/*height: 100%;*/
 	width: 64px;
@@ -179,4 +179,31 @@ div.inv-item.legendary {
 	inset -1px -1px 0 #ddd,
 	inset -1px -1px 20px rgba(250, 80, 0, 0.4),
 	inset 1px 1px 20px rgba(250, 80, 0, 0.4);
+}
+
+
+/* tooltip */
+
+div.inv-item div.tooltip {
+	display: none;
+	opacity: 0;
+	position: absolute;
+	z-index: 1002;
+	transform: translate(0, 0);
+	background-color: #222;
+	color: #aaaaaa;
+	width: 300%;
+	height: auto;
+	top: 120%;
+	left: -100%;
+	padding: 15px;
+	border-radius: 5px;
+	transition: opacity 0.2s, transform 0.2s;
+}
+
+div.inv-item:hover div.tooltip,
+div.inv-item.show-tooltip div.tooltip
+{
+	display: block;
+	opacity: 1;
 }

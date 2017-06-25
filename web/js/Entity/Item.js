@@ -64,6 +64,7 @@ Hw.Entity.Item = (function(name, image, type, rarity, template, effects){
             .replace('{id}', _id)
             .replace(/{class_name}/g, _name.toLowerCase())
             .replace(/{rarity_name}/g, _getRarityName(_rarity))
+            .replace(/{item_name}/g, _getRarityName(_rarity) + ' ' + _name.toLowerCase())
             // .replace(
             //     '{item}',
             //     // JSON.stringify(

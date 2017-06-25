@@ -62,7 +62,7 @@ module.exports = (function () {
         },
         {
             id: 6,
-            name: 'Trinket1',
+            name: 'Locket',
             type: 'trinket',
             image: 'image/items/trinkets/bronze_amulet.jpg',
             effects: {
@@ -71,7 +71,7 @@ module.exports = (function () {
         },
         {
             id: 7,
-            name: 'Trinket2',
+            name: 'Amulet',
             type: 'trinket',
             image: 'image/items/trinkets/blue_amulet.jpg',
             effects: {
