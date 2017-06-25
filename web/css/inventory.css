@@ -134,7 +134,7 @@ div.inv-item {
 	box-shadow: inset -1px -1px 20px rgba(0, 0, 0, 0.2),
 	inset 1px 1px 20px rgba(0, 0, 0, 0.2);
 	border: 1px solid;
-	border-color: rgba(220, 220, 220, 1);;
+	border-color: rgba(220, 220, 220, 1);
 	background-size: cover;
 }
 div.inv-item.junk {
@@ -199,6 +199,7 @@ div.inv-item div.tooltip {
 	padding: 15px;
 	border-radius: 5px;
 	transition: opacity 0.2s, transform 0.2s;
+	text-align: center;
 }
 
 div.inv-item:hover div.tooltip,
@@ -207,3 +208,32 @@ div.inv-item.show-tooltip div.tooltip
 	display: block;
 	opacity: 1;
 }
+
+div.inv-item div.tooltip span.title {
+	font-size: 1.5em;
+	margin: 0 0 5px 0;
+	display: block;
+	margin: auto;
+}
+div.inv-item div.tooltip span.title.junk {
+	color: rgba(170, 170, 170, 1);
+}
+div.inv-item div.tooltip span.title.normal {
+	color: rgba(220, 220, 220, 1);
+}
+div.inv-item div.tooltip span.title.magical {
+	color: rgba(0, 150, 250, 1);
+}
+div.inv-item div.tooltip span.title.rare {
+	color: rgba(255, 255, 0, 1);
+}
+div.inv-item div.tooltip span.title.legendary {
+	color: rgba(250, 80, 0, 1);
+}
+
+div.inv-item div.tooltip span.effects_title {}
+div.inv-item div.tooltip span.effect {}
+div.inv-item div.tooltip span.effect.name {
+	margin: 0 10px 0 0;
+}
+div.inv-item div.tooltip span.effect.value {}

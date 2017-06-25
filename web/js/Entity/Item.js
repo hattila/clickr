@@ -60,11 +60,18 @@ Hw.Entity.Item = (function(name, image, type, rarity, template, effects){
         //     return _template;
         // }
 
+        var effectsPart = '';
+        $.each(_effects, function (key, value) {
+            effectsPart += '<span class="effect name">' + key + ':</span>';
+            effectsPart += '<span class="effect value">+' + value + '</span><br/>';
+        });
+
         _template = _template
             .replace('{id}', _id)
             .replace(/{class_name}/g, _name.toLowerCase())
             .replace(/{rarity_name}/g, _getRarityName(_rarity))
             .replace(/{item_name}/g, _getRarityName(_rarity) + ' ' + _name.toLowerCase())
+            .replace('{effects}', effectsPart)
             // .replace(
             //     '{item}',
             //     // JSON.stringify(
