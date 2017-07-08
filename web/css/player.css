@@ -1,0 +1,42 @@
+div#player {
+	/*position: fixed;
+	bottom: 25px;*/
+	position: relative;
+	width: 600px;
+	height: 150px;
+	margin: 50px auto 0px;
+}
+
+div#player div.profile-container {
+	height: 100px;
+}
+
+div#player div.profile-container div.curved-property {
+	width: 12px;
+	height: 100%;
+	border: 1px solid #222222;
+}
+div#player div.profile-container div.curved-property.stamina { }
+div#player div.profile-container div.curved-property.sanity { }
+div#player div.profile-container div.curved-property div.bar {
+	height: 100%;
+	transition: height;
+}
+
+div#player div.profile-container div.curved-property.stamina div.bar {
+	background-color: #ff2200;
+}
+div#player div.profile-container div.curved-property.sanity div.bar {
+	background-color: #2299ff;
+}
+
+div#player div.profile-container div.profile {
+	width: 100px;
+	height: 100px;
+	background-image: url('/image/player/JoeDiamond.jpg');
+	background-position: center center;
+	background-size: cover;
+	border: 2px solid #222222;
+}
+div#player div.profile-container div.player-level {}
+div#player div.profile-container div.xp-bar {}
