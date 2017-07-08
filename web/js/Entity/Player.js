@@ -156,6 +156,8 @@ Hw.Entity.Player = (function(){
 
         _$stats[stat].text(_stats[stat] + _bonuses[stat]);
 
+        $.publish('/player/stats/change', _stats);
+
         return true;
     };
 
@@ -190,6 +192,7 @@ Hw.Entity.Player = (function(){
 
         _bonuses = _equippedEffects;
 
+        // TODO: updateStat should only be called on canged values
         $.each(_bonuses, function (bonus, value) {
             if (_stats.hasOwnProperty(bonus)) {
                 _updateStat(bonus);

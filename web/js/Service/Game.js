@@ -59,6 +59,8 @@ Hw.Service.Game = (function(){
         Hw.Service.Spawner.loadMonsters(function(){
             _initLevel(_currentLevelIdx);
         });
+
+        Hw.Service.PlayerWidget.init();
     };
 
     var _initLevel = function (idx) {
