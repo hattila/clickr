@@ -10,7 +10,10 @@ Hw.Service.PlayerWidget = (function(){
                 height: (stats.stamina / stats.maxStamina * 100) + '%'
             });
 
-            console.log((stats.stamina / stats.maxStamina * 100) + '%');
+            _$sanityBar.css({
+                height: (stats.sanity / stats.maxSanity * 100) + '%'
+            });
+
         });
     };
 
