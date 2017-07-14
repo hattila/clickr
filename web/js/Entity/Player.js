@@ -169,8 +169,11 @@ Hw.Entity.Player = (function(){
         _$stats.xp.text(_xp);
     };
 
+    /**
+     * @param items Object of the equipped items. Slot name is the key, the Item is the value
+     * @private
+     */
     var _applyItemBonuses = function (items) {
-        // console.log('Should apply equipped item effects', items);
 
         // TODO: better way without duplicating the bonuses object?
         var _equippedEffects = {
@@ -182,19 +185,40 @@ Hw.Entity.Player = (function(){
         
         $.each(items, function (key, item) {
             if (item !== null) {
+
+                /**
+                 * cumulate all the equipped effects, because multiple items can have the same effect, and we want
+                 * to update the them once
+                 */
                 $.each(item.getEffects(), function (effect, value) {
                     if (_equippedEffects.hasOwnProperty(effect)) {
                         _equippedEffects[effect] += value;
                     }
                 });
+                // $.each(item.getEffects(), function (effect, value) {
+                //     if (_bonuses.hasOwnProperty(effect) && value !== 0) {
+                //         _bonuses[effect] += value;
+                //         _updateStat(effect);
+                //     }
+                // });
             }
         });
 
+        // must not be a reference to _bonuses
+        var previousBonuses = {
+            damage: _bonuses.damage,
+            stamina: _bonuses.stamina,
+            sanity: _bonuses.sanity,
+            armor: _bonuses.armor
+        };
+        // equipped effects rewrite the current bonuses
         _bonuses = _equippedEffects;
 
-        // TODO: updateStat should only be called on canged values
+        console.log(_bonuses);
+
         $.each(_bonuses, function (bonus, value) {
-            if (_stats.hasOwnProperty(bonus)) {
+            console.log(bonus, value);
+            if (_stats.hasOwnProperty(bonus) && _bonuses[bonus] !== previousBonuses[bonus]) {
                 _updateStat(bonus);
             }
         });

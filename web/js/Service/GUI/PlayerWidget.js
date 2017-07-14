@@ -6,6 +6,9 @@ Hw.Service.PlayerWidget = (function(){
 
     var init = function () {
         $.subscribe('/player/stats/change', function (e, stats) {
+
+            console.log('player widget drawing bars');
+
             _$staminaBar.css({
                 height: (stats.stamina / stats.maxStamina * 100) + '%'
             });
