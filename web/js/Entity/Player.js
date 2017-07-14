@@ -195,30 +195,14 @@ Hw.Entity.Player = (function(){
                         _equippedEffects[effect] += value;
                     }
                 });
-                // $.each(item.getEffects(), function (effect, value) {
-                //     if (_bonuses.hasOwnProperty(effect) && value !== 0) {
-                //         _bonuses[effect] += value;
-                //         _updateStat(effect);
-                //     }
-                // });
             }
         });
 
-        // must not be a reference to _bonuses
-        var previousBonuses = {
-            damage: _bonuses.damage,
-            stamina: _bonuses.stamina,
-            sanity: _bonuses.sanity,
-            armor: _bonuses.armor
-        };
-        // equipped effects rewrite the current bonuses
-        _bonuses = _equippedEffects;
-
-        console.log(_bonuses);
-
         $.each(_bonuses, function (bonus, value) {
             console.log(bonus, value);
-            if (_stats.hasOwnProperty(bonus) && _bonuses[bonus] !== previousBonuses[bonus]) {
+            if (_stats.hasOwnProperty(bonus) && _equippedEffects[bonus] !== _bonuses[bonus]) {
+                // equipped effects rewrite the current bonuses
+                _bonuses[bonus] = _equippedEffects[bonus];
                 _updateStat(bonus);
             }
         });
