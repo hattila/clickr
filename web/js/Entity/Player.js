@@ -156,7 +156,11 @@ Hw.Entity.Player = (function(){
 
         _$stats[stat].text(_stats[stat] + _bonuses[stat]);
 
-        $.publish('/player/stats/change', _stats);
+        $.publish('/player/stats/change', {
+            stats: _stats,
+            bonuses: _bonuses,
+            statChanged: stat
+        });
 
         return true;
     };
@@ -174,8 +178,6 @@ Hw.Entity.Player = (function(){
      * @private
      */
     var _applyItemBonuses = function (items) {
-
-        // TODO: better way without duplicating the bonuses object?
         var _equippedEffects = {
             damage: 0,
             stamina: 0,

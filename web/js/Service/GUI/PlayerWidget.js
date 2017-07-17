@@ -5,17 +5,29 @@ Hw.Service.PlayerWidget = (function(){
     var _$sanityBar = $('div#player div.profile-container div.curved-property.sanity div.bar');
 
     var init = function () {
-        $.subscribe('/player/stats/change', function (e, stats) {
 
-            console.log('player widget drawing bars');
+        /**
+         * @param player Object of player stats bonuses and the currently changed stat
+         *
+         *  player.stats
+         *  player.bonuses
+         *  player.statChanged
+         */
+        $.subscribe('/player/stats/change', function (e, player) {
+            console.log('player widget drawing bars, changed stat: ', player);
 
-            _$staminaBar.css({
-                height: (stats.stamina / stats.maxStamina * 100) + '%'
-            });
+            if (player.statChanged === 'stamina') {
+                _$staminaBar.css({
+                    height: (player.stats.stamina / player.maxStamina * 100) + '%'
+                });
+            }
 
-            _$sanityBar.css({
-                height: (stats.sanity / stats.maxSanity * 100) + '%'
-            });
+            if (player.statChanged === 'sanity') {
+                _$sanityBar.css({
+                    height: (player.stats.sanity / player.stats.maxSanity * 100) + '%'
+                });
+            }
+
 
         });
     };
