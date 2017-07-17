@@ -18,8 +18,7 @@ div#player div.profile-container div.curved-property {
 	border: 1px solid #222222;
 	position: relative;
 }
-div#player div.profile-container div.curved-property.stamina { }
-div#player div.profile-container div.curved-property.sanity { }
+
 div#player div.profile-container div.curved-property div.bar {
 	height: 60%;
 	width: 100%;
@@ -29,12 +28,41 @@ div#player div.profile-container div.curved-property div.bar {
 	transition: height;
 }
 
+div#player div.profile-container div.curved-property div.value,
+div#player div.profile-container div.curved-property div.maxValue {
+	position: absolute;
+	left: -20px;
+	width: 50px;
+	text-align: center;
+	font-size: 0.8em;
+}
+
+div#player div.profile-container div.curved-property div.value {
+	bottom: -17px;
+}
+div#player div.profile-container div.curved-property div.maxValue {
+	top: -17px;
+}
+
+div#player div.profile-container div.curved-property.stamina { }
+div#player div.profile-container div.curved-property.sanity { }
+
 div#player div.profile-container div.curved-property.stamina div.bar {
 	background-color: #ff2200;
 }
 div#player div.profile-container div.curved-property.sanity div.bar {
 	background-color: #2299ff;
 }
+
+div#player div.profile-container div.curved-property.stamina div.value {
+	color: #222;
+}
+div#player div.profile-container div.curved-property.stamina div.maxValue {
+	color: #222;
+}
+div#player div.profile-container div.curved-property.sanity div.value { }
+div#player div.profile-container div.curved-property.sanity div.maxValue { }
+
 
 div#player div.profile-container div.profile {
 	width: 100px;

@@ -2,6 +2,9 @@
 Hw.Service.PlayerWidget = (function(){
 
     var _$staminaBar = $('div#player div.profile-container div.curved-property.stamina div.bar');
+    var _$staminaMax = $('div#player div.profile-container div.curved-property.stamina div.maxValue');
+    var _$stamina = $('div#player div.profile-container div.curved-property.stamina div.value');
+
     var _$sanityBar = $('div#player div.profile-container div.curved-property.sanity div.bar');
 
     var init = function () {
@@ -18,8 +21,11 @@ Hw.Service.PlayerWidget = (function(){
 
             if (player.statChanged === 'stamina') {
                 _$staminaBar.css({
-                    height: (player.stats.stamina / player.maxStamina * 100) + '%'
+                    height: (player.stats.stamina / player.stats.maxStamina * 100) + '%'
                 });
+
+                _$stamina.html(player.stats.stamina);
+                _$staminaMax.html(player.stats.maxStamina);
             }
 
             if (player.statChanged === 'sanity') {
