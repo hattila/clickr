@@ -82,6 +82,11 @@ Hw.Entity.Monster = (function(template, name, image, hp, damage) {
     var dealDamage = function () {
         Player.recDamage(_damage.stamina);
 
+        $.publish('/player/recieve/damage', {
+            type: 'stamina',
+            value: _damage.stamina
+        });
+
         $(_template).children('div.image').children('div.top-left').addClass('opacity1');
         setTimeout(function () {
             $(_template).children('div.image').children('div.top-left').removeClass('opacity1');

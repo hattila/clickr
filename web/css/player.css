@@ -72,6 +72,23 @@ div#player div.profile-container div.profile {
 	background-size: cover;
 	border: 2px solid #222222;
 	margin: 0 5px;
+	position: relative;
 }
+
+div#player div.profile-container div.profile div.floating-text {
+	position: absolute;
+	top: 32%;
+	left: -5px;
+	width: inherit;
+	font-size: 2.5em;
+	text-align: center;
+	color: #fff;
+	opacity: 1;
+	transition: opacity 1s, transform 1s;
+}
+div#player div.profile-container div.profile div.floating-text.damage {
+	text-shadow: -2px 0 5px #ff0000, 0 2px 5px #ff0000, 2px 0 5px #ff0000, 0 -2px 5px #ff0000;
+}
+
 div#player div.profile-container div.player-level {}
 div#player div.profile-container div.xp-bar {}

@@ -7,6 +7,8 @@ Hw.Service.PlayerWidget = (function(){
 
     var _$sanityBar = $('div#player div.profile-container div.curved-property.sanity div.bar');
 
+    var _$playerPortrait = $('div#player div.profile-container div.profile');
+
     var init = function () {
 
         /**
@@ -36,6 +38,29 @@ Hw.Service.PlayerWidget = (function(){
             }
 
 
+        });
+
+        /**
+         * @param damage Object
+         *  damage = {
+         *      type: 'stamina',
+         *      value: 5
+         *  }
+         */
+        $.subscribe('/player/recieve/damage', function (e, damage) {
+            var newFloatingText = $('<div class="floating-text damage">-' + damage.value + '</div>')
+                .appendTo(_$playerPortrait);
+
+            setTimeout(function () {
+                $(newFloatingText).css({
+                    opacity: 0,
+                    transform: 'translate(0, -50px)'
+                });
+            }, 500);
+
+            setTimeout(function () {
+                $(newFloatingText).remove();
+            }, 1500);
         });
     };
 
