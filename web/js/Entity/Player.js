@@ -2,12 +2,12 @@
 Hw.Entity.Player = (function(){
 
     var _stats = {
-        stamina: 100,
+        stamina: 100,       // physical hit points
         maxStamina: 100,
-        sanity: 100,
+        sanity: 100,        // mental hit points
         maxSanity: 100,
-        damage: 1,
-        armor: 0
+        damage: 1,          // player damage
+        armor: 0            // TODO: decide armor mechanic, maybe add a 'barrier' for mental defense?
     };
 
     var _level = 1;
