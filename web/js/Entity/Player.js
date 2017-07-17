@@ -59,8 +59,9 @@ Hw.Entity.Player = (function(){
      *
      * @param damage
      * @returns {number}
+     * @private
      */
-    var recDamage = function (damage) {
+    var _recDamage = function (damage) {
         _stats.stamina = damage < _stats.stamina ? _stats.stamina - damage : 0;
         _updateStat('stamina');
 
@@ -81,8 +82,9 @@ Hw.Entity.Player = (function(){
      *
      * @param damage
      * @returns {number}
+     * @private
      */
-    var recSanityDamage = function (damage) {
+    var _recSanityDamage = function (damage) {
         _stats.stanity = damage < _stats.stanity ? _stats.stanity - damage : 0;
         _updateStat('sanity');
 
@@ -211,6 +213,23 @@ Hw.Entity.Player = (function(){
     };
 
     var _setupEventListeners = function () {
+
+        /**
+         * @param damage Object
+         *  damage = {
+         *      type: 'stamina',
+         *      value: 5
+         *  }
+         */
+        $.subscribe('/player/recieve/damage', function (e, damage) {
+            if(damage.type === 'stamina') {
+                _recDamage(damage.value);
+            }
+            if(damage.type === 'sanity') {
+                _recSanityDamage(damage.value);
+            }
+        });
+
         // TODO: get a Monster Entity and get/calc the xp given by it.
         $.subscribe('/monster/dies', function (e, monsterId) {
             _awardXp();
@@ -231,9 +250,7 @@ Hw.Entity.Player = (function(){
         getDamage: getDamage,
         getArmor: getArmor,
 
-        recDamage: recDamage,
         recHealing: recHealing,
-        recSanityDamage: recSanityDamage,
         recSanityHealing: recSanityHealing,
         resetPlayerStats: resetPlayerStats,
         getBonuses: getBonuses

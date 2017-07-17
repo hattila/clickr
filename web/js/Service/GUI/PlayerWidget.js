@@ -40,13 +40,6 @@ Hw.Service.PlayerWidget = (function(){
 
         });
 
-        /**
-         * @param damage Object
-         *  damage = {
-         *      type: 'stamina',
-         *      value: 5
-         *  }
-         */
         $.subscribe('/player/recieve/damage', function (e, damage) {
             var newFloatingText = $('<div class="floating-text damage">-' + damage.value + '</div>')
                 .appendTo(_$playerPortrait);

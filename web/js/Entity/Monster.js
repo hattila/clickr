@@ -80,8 +80,6 @@ Hw.Entity.Monster = (function(template, name, image, hp, damage) {
     };
 
     var dealDamage = function () {
-        Player.recDamage(_damage.stamina);
-
         $.publish('/player/recieve/damage', {
             type: 'stamina',
             value: _damage.stamina
