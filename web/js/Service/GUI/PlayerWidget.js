@@ -21,11 +21,12 @@ Hw.Service.PlayerWidget = (function(){
 
             if (player.statChanged === 'stamina') {
                 _$staminaBar.css({
-                    height: (player.stats.stamina / player.stats.maxStamina * 100) + '%'
+                    // height: (player.stats.stamina / player.stats.maxStamina * 100) + '%'
+                    height: (Player.getStamina() / Player.getMaxStamina() * 100) + '%'
                 });
 
-                _$stamina.html(player.stats.stamina);
-                _$staminaMax.html(player.stats.maxStamina);
+                _$stamina.html(Player.getStamina());
+                _$staminaMax.html(Player.getMaxStamina());
             }
 
             if (player.statChanged === 'sanity') {
