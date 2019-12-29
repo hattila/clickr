@@ -1,0 +1,14 @@
+version: '3'
+services:
+  node:
+    container_name: 'node'
+    image: node:12.13.0
+    network_mode: host
+    entrypoint: bash -c 'node app.js 8080'
+    environment:
+      - VIRTUAL_HOST=clickr.docker
+    expose:
+      - 8080
+    working_dir: /app
+    volumes:
+      - $PWD:/app
